@@ -1,7 +1,6 @@
 {
   "name": "@gatoreviews/gtr-form-renderer",
   "version": "0.1.0",
-  "private": true,
   "description": "Form renderer for GTR Suite",
   "author": "api@gtrsuite.com",
   "homepage": "https://github.com/Gatoreviews/gtr-form-renderer#readme",
