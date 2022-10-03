@@ -1,5 +1,4 @@
 import FormBuilder from './components/FormBuilder.vue'
-// import vuetify from './plugins/vuetify'
 
 // Declare install function executed by Vue.use()
 const install = function (app) {
@@ -8,9 +7,6 @@ const install = function (app) {
   install.installed = true
   // Register components
   app.component('FormBuilder', FormBuilder)
-  //Initialize Vuetify
-  // app.use(vuetify)
-  // options.vuetify = vuetify
 }
 
 // Create module definition for Vue.use()

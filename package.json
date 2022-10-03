@@ -1,6 +1,6 @@
 {
   "name": "@gatoreviews/gtr-form-renderer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Form renderer for GTR Suite",
   "author": "api@gtrsuite.com",
   "homepage": "https://github.com/Gatoreviews/gtr-form-renderer#readme",
@@ -21,8 +21,8 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
-    "vuetify": "^2.6.0",
-    "vuex": "^3.6.2"
+    "vuelidate": "^0.7.7",
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -43,10 +43,12 @@
     "prettier": "^2.4.1",
     "sass": "~1.32.13",
     "sass-loader": "^12.0.0",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.9.2"
   },
   "peerDependencies": {
-    "vue": "^2.0.0"
+    "vue": "^2.6.0",
+    "vuetify": "^2.6.0"
   },
   "eslintConfig": {
     "root": true,
@@ -89,5 +91,8 @@
     "trailingComma": "es5",
     "useTabs": false,
     "endOfLine": "auto"
+  },
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest"
   }
 }
