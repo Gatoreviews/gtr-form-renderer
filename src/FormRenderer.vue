@@ -1,12 +1,17 @@
 <template>
   <v-app>
     GTR Suite Form Renderer
-    <v-text-field label="Default Text Field" v-model="example"></v-text-field>
+    <g-text-field />
+    <g-select />
   </v-app>
 </template>
 
 <script>
+import GSelect from './components/GSelect.vue'
+import GTextField from './components/GTextField.vue'
+
 export default {
+  components: { GTextField, GSelect },
   name: 'FormRenderer',
   props: {
     id: {
@@ -16,6 +21,14 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>
 
 <style scoped>
 @import 'vuetify/dist/vuetify.min.css';
