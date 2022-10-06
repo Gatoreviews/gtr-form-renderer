@@ -1,6 +1,6 @@
 {
   "name": "@gatoreviews/gtr-form-renderer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Form renderer for GTR Suite",
   "author": "api@gtrsuite.com",
   "homepage": "https://github.com/Gatoreviews/gtr-form-renderer#readme",
@@ -19,6 +19,7 @@
     "url": "git+https://github.com/Gatoreviews/gtr-form-renderer.git"
   },
   "dependencies": {
+    "@mdi/js": "^7.0.96",
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
     "vue-custom-element": "^3.3.0",
