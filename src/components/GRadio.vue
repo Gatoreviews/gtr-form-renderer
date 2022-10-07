@@ -1,22 +1,18 @@
 <template>
-  <div v-if="field.options">
-    <v-checkbox
-      v-model="model"
+  <v-radio-group v-model="model">
+    <v-radio
       v-for="option in field.options"
       :key="option.key"
       :label="option.value"
       :value="option.key"
-      hide-details
-    />
-  </div>
-  <div v-else>
-    <v-checkbox v-model="model" :label="field.label" />
-  </div>
+      @change="onChange"
+    ></v-radio>
+  </v-radio-group>
 </template>
 
 <script>
 export default {
-  name: 'GCheckbox',
+  name: 'GRadio',
   props: {
     field: {
       type: Object,
@@ -28,6 +24,13 @@ export default {
   }),
   created() {
     this.model = this.field.defaultValue || null
+  },
+  methods: {
+    onChange() {
+      this.$emit('change', {
+        [this.field.slug]: this.model,
+      })
+    },
   },
 }
 </script>

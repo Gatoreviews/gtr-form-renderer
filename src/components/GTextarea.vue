@@ -1,12 +1,12 @@
 <template>
-  <v-text-field
+  <v-textarea
     v-model="model"
     :label="field.label"
     :placeholder="field.placeholder"
     :type="field.type"
     :name="field.slug"
-    :hint="field.helper"
-    persistent-hint
+    no-resize
+    auto-grow
     outlined
     solo
     flat
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'GTextField',
+  name: 'GTextArea',
   props: {
     field: {
       type: Object,

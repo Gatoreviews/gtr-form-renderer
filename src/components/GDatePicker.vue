@@ -1,9 +1,11 @@
 <template>
-  <v-menu v-model="menu" ref="menu" :close-on-content-click="false" :return-value.sync="date" min-width="auto">
+  <v-menu v-model="menu" ref="menu" :close-on-content-click="false" :return-value.sync="model" min-width="auto">
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
-        v-model="date"
-        label="Picker in menu"
+        :value="displayedDate"
+        :label="field.label"
+        :placeholder="field.placeholder"
+        :name="field.name"
         readonly
         v-bind="attrs"
         v-on="on"
@@ -12,22 +14,47 @@
         flat
       ></v-text-field>
     </template>
-    <v-date-picker v-model="date" no-title scrollable>
-      <v-spacer></v-spacer>
-      <v-btn text color="primary" @click="menu = false"> Cancel </v-btn>
-      <v-btn text color="primary" @click="$refs.menu.save(date)"> OK </v-btn>
-    </v-date-picker>
+    <v-date-picker
+      v-model="model"
+      :range="field.multiple"
+      scrollable
+      @change="$refs.menu.save(model)"
+      :first-day-of-week="1"
+    />
   </v-menu>
 </template>
 
 <script>
+import { formatedDate } from '@/utils/date.util'
+
 export default {
-  name: 'DatePicker',
+  name: 'GDatePicker',
+  props: {
+    field: {
+      type: Object,
+      required: true,
+    },
+    locale: {
+      type: String,
+      required: true,
+    },
+  },
   data: () => ({
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
     menu: false,
-    modal: false,
-    menu2: false,
+    model: null,
   }),
+  created() {
+    this.model = this.field.defaultValue || null
+  },
+  computed: {
+    displayedDate() {
+      if (this.model && Array.isArray(this.model) && this.field.multiple) {
+        return `${formatedDate(this.model[0], 'L', this.locale)} - ${formatedDate(this.model[1], 'L', this.locale)}`
+      } else if (this.model && !Array.isArray(this.model)) {
+        return formatedDate(this.model, 'L', this.locale)
+      }
+      return ''
+    },
+  },
 }
 </script>

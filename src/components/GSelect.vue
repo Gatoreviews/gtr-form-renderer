@@ -1,10 +1,12 @@
 <template>
   <v-select
     v-model="model"
-    :items="options"
-    :label="label"
-    :placeholder="placeholder"
-    :multiple="multiple"
+    :items="field.options"
+    item-text="value"
+    item-value="key"
+    :label="field.label"
+    :placeholder="field.placeholder"
+    :multiple="field.multiple"
     outlined
     solo
     flat
@@ -13,36 +15,18 @@
 
 <script>
 export default {
-  name: 'GTRSelect',
+  name: 'GSelect',
   props: {
-    label: {
-      type: String,
-      required: false,
-      default: 'Label',
-    },
-    placeholder: {
-      type: String,
-      required: false,
-      default: 'Placeholder',
-    },
-    type: {
-      type: String,
-      required: false,
-      default: 'text',
-    },
-    multiple: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    options: {
-      type: Array,
-      required: false,
-      default: () => [],
+    field: {
+      type: Object,
+      required: true,
     },
   },
   data: () => ({
-    model: '',
+    model: null,
   }),
+  created() {
+    this.model = this.field.defaultValue || null
+  },
 }
 </script>
