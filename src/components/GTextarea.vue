@@ -10,6 +10,7 @@
     outlined
     solo
     flat
+    @input="onInput"
   />
 </template>
 
@@ -27,6 +28,13 @@ export default {
   }),
   created() {
     this.model = this.field.defaultValue || null
+  },
+  methods: {
+    onInput() {
+      this.$emit('input', {
+        [this.field.slug]: this.model,
+      })
+    },
   },
 }
 </script>

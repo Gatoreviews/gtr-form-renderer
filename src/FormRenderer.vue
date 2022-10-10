@@ -12,8 +12,19 @@
             </div>
             <div class="form-renderer__fields">
               <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
-                <g-text-field v-if="field.type === 'text'" :field="field" />
+                <g-text-field v-if="field.type === 'text'" :field="field" :v="$v" @input="saveField" />
               </div>
+
+              <g-text-field
+                v-show="false"
+                :field="{
+                  label: 'Textfield',
+                  placeholder: 'Textfield Number',
+                  defaultValue: 1337,
+                  type: 'hidden',
+                }"
+                @input="saveField"
+              />
 
               <g-text-field
                 :field="{
@@ -22,6 +33,7 @@
                   defaultValue: 1337,
                   type: 'number',
                 }"
+                @input="saveField"
               />
 
               <g-textarea
@@ -30,6 +42,7 @@
                   placeholder: 'Textarea placeholder',
                   defaultValue: 'Lorem ipsum',
                 }"
+                @input="saveField"
               />
               <g-select
                 :field="{
@@ -37,11 +50,12 @@
                   placeholder: 'Choisir une option',
                   defaultValue: 'select-1',
                   options: [
-                    { key: 'select-1', value: 'Option 1' },
-                    { key: 'select-2', value: 'Option 2' },
-                    { key: 'select-3', value: 'Option 3' },
+                    { value: 'select-1', label: 'Option 1' },
+                    { value: 'select-2', label: 'Option 2' },
+                    { value: 'select-3', label: 'Option 3' },
                   ],
                 }"
+                @input="saveField"
               />
 
               <g-select
@@ -51,15 +65,17 @@
                   placeholder: 'Choisir une ou plsuieurs options',
                   defaultValue: ['select-1', 'select-2'],
                   options: [
-                    { key: 'select-1', value: 'Option 1' },
-                    { key: 'select-2', value: 'Option 2' },
-                    { key: 'select-3', value: 'Option 3' },
+                    { value: 'select-1', label: 'Option 1' },
+                    { value: 'select-2', label: 'Option 2' },
+                    { value: 'select-3', label: 'Option 3' },
                   ],
                 }"
+                @input="saveField"
               />
               <g-date-picker
                 :field="{ label: 'Date', defaultValue: '2022-10-07', placeholder: 'Choisir une date' }"
                 :locale="locale"
+                @change="saveField"
               />
               <g-date-picker
                 :field="{
@@ -69,19 +85,25 @@
                   placeholder: 'Choisir une date de début et de fin',
                 }"
                 :locale="locale"
+                @change="saveField"
               />
-              <g-checkbox :field="{ label: 'Checkbox', defaultValue: true }" :defaul-value="true" />
+              <g-checkbox
+                :field="{ label: 'Checkbox', defaultValue: true, slug: 'checkbox-simple' }"
+                @change="saveField"
+              />
               <g-checkbox
                 :field="{
                   label: 'Checkbox Multiple',
                   defaultValue: ['checkbox-2', 'checkbox-3'],
                   options: [
-                    { key: 'checkbox-1', value: 'Checkbox 1' },
-                    { key: 'checkbox-2', value: 'Checkbox 2' },
-                    { key: 'checkbox-3', value: 'Checkbox 3' },
+                    { value: 'checkbox-1', label: 'Checkbox 1' },
+                    { value: 'checkbox-2', label: 'Checkbox 2' },
+                    { value: 'checkbox-3', label: 'Checkbox 3' },
                   ],
+                  slug: 'checkbox-multiple',
                 }"
                 :defaul-value="true"
+                @change="saveField"
               />
               <g-radio
                 :field="{
@@ -89,9 +111,9 @@
                   defaultValue: 'radio-1',
                   slug: 'radio',
                   options: [
-                    { key: 'radio-1', value: 'Radio 1' },
-                    { key: 'radio-2', value: 'Radio 2' },
-                    { key: 'radio-3', value: 'Radio 3' },
+                    { value: 'radio-1', label: 'Radio 1' },
+                    { value: 'radio-2', label: 'Radio 2' },
+                    { value: 'radio-3', label: 'Radio 3' },
                   ],
                 }"
                 @change="saveField"
@@ -108,6 +130,8 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 import { sendGetRequest, sendPostRequest } from './services/api.service'
 import GSelect from './components/GSelect.vue'
 import GTextField from './components/GTextField.vue'
@@ -135,15 +159,26 @@ export default {
     image: null,
     fieldsValues: {},
   }),
+  mixins: [validationMixin],
   async created() {
     this.$vuetify.lang.current = this.locale
     this.loading = true
     this.form = await sendGetRequest(`https://gtr-node-api-p.osc-fr1.scalingo.io/forms/${this.formId}`, {
       headers: { locale: this.locale },
     })
+    this.getDefaultValues()
     this.loading = false
   },
   methods: {
+    getDefaultValues() {
+      if (this.form && this.form.fields.length) {
+        this.form.fields
+          .filter(field => field.defaultValue)
+          .forEach(field => {
+            this.fieldsValues[field.slug] = field.defaultValue
+          })
+      }
+    },
     saveField(field) {
       this.fieldsValues = {
         ...this.fieldsValues,
@@ -151,14 +186,26 @@ export default {
       }
     },
     async onSubmit() {
+      this.$v.$touch()
+      await this.$recaptchaLoaded()
+      const token = await this.$recaptcha('leadSave')
       await sendPostRequest(
         `https://gtr-node-api-p.osc-fr1.scalingo.io/forms/${this.formId}`,
         { fieldsValues: this.fieldsValues },
         {
-          headers: { locale: this.locale },
+          headers: { locale: this.locale, recaptcha: token },
         }
       )
     },
+  },
+  validations() {
+    return {
+      fieldsValues: {
+        'awesome-field': {
+          required,
+        },
+      },
+    }
   },
 }
 </script>

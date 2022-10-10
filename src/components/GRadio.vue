@@ -1,12 +1,6 @@
 <template>
-  <v-radio-group v-model="model">
-    <v-radio
-      v-for="option in field.options"
-      :key="option.key"
-      :label="option.value"
-      :value="option.key"
-      @change="onChange"
-    ></v-radio>
+  <v-radio-group v-model="model" @change="onChange">
+    <v-radio v-for="option in field.options" :key="option.value" :label="option.label" :value="option.value"></v-radio>
   </v-radio-group>
 </template>
 

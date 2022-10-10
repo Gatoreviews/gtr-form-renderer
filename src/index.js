@@ -1,9 +1,11 @@
 import Vue from 'vue'
-import FormRenderer from './FormRenderer.vue'
 import VueCustomElement from 'vue-custom-element'
+import { VueReCaptcha } from 'vue-recaptcha-v3'
+import FormRenderer from './FormRenderer.vue'
 import vuetify from './plugins/vuetify'
 
 Vue.use(VueCustomElement)
+Vue.use(VueReCaptcha, { siteKey: '6LcNv2wiAAAAANbzX9PD6F6T8dNAzjx97c_kkfwW' })
 FormRenderer.vuetify = vuetify
 
 vuetify.framework.theme.checkOrCreateStyleElement = function () {

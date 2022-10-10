@@ -3,14 +3,15 @@
     <v-checkbox
       v-model="model"
       v-for="option in field.options"
-      :key="option.key"
-      :label="option.value"
-      :value="option.key"
+      :key="option.value"
+      :label="option.label"
+      :value="option.value"
       hide-details
+      @change="onChange"
     />
   </div>
   <div v-else>
-    <v-checkbox v-model="model" :label="field.label" />
+    <v-checkbox v-model="model" :label="field.label" @change="onChange" />
   </div>
 </template>
 
@@ -28,6 +29,13 @@ export default {
   }),
   created() {
     this.model = this.field.defaultValue || null
+  },
+  methods: {
+    onChange() {
+      this.$emit('change', {
+        [this.field.slug]: this.model,
+      })
+    },
   },
 }
 </script>

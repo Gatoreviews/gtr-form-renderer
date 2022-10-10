@@ -2,14 +2,15 @@
   <v-select
     v-model="model"
     :items="field.options"
-    item-text="value"
-    item-value="key"
+    item-text="label"
+    item-value="value"
     :label="field.label"
     :placeholder="field.placeholder"
     :multiple="field.multiple"
     outlined
     solo
     flat
+    @input="onInput"
   />
 </template>
 
@@ -27,6 +28,13 @@ export default {
   }),
   created() {
     this.model = this.field.defaultValue || null
+  },
+  methods: {
+    onInput() {
+      this.$emit('input', {
+        [this.field.slug]: this.model,
+      })
+    },
   },
 }
 </script>
