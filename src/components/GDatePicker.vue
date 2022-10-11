@@ -6,6 +6,7 @@
         :label="field.label"
         :placeholder="field.placeholder"
         :name="field.name"
+        :error-messages="errorMessages"
         readonly
         v-bind="attrs"
         v-on="on"
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import { errorsMessages } from '@/mixins/errorsMessages.mixin'
 import { formatedDate } from '@/utils/date.util'
 
 export default {
@@ -32,7 +34,13 @@ export default {
       type: String,
       required: true,
     },
+    v: {
+      type: Object,
+      required: false,
+      default: () => {},
+    },
   },
+  mixins: [errorsMessages],
   data: () => ({
     menu: false,
     model: null,
@@ -53,7 +61,7 @@ export default {
   methods: {
     onChange() {
       this.$refs.menu.save(this.model)
-      this.$emit('change', {
+      this.$emit('input', {
         [this.field.slug]: this.model,
       })
     },

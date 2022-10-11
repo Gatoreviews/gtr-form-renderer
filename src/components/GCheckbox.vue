@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { errorsMessages } from '@/mixins/errorsMessages.mixin'
+
 export default {
   name: 'GCheckbox',
   props: {
@@ -24,6 +26,7 @@ export default {
       required: true,
     },
   },
+  mixins: [errorsMessages],
   data: () => ({
     model: null,
   }),
@@ -32,7 +35,7 @@ export default {
   },
   methods: {
     onChange() {
-      this.$emit('change', {
+      this.$emit('input', {
         [this.field.slug]: this.model,
       })
     },

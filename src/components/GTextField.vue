@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { errorsMessages } from '@/mixins/errorsMessages.mixin'
+
 export default {
   name: 'GTextField',
   props: {
@@ -29,21 +31,12 @@ export default {
       default: () => {},
     },
   },
+  mixins: [errorsMessages],
   data: () => ({
     model: null,
   }),
   created() {
     this.model = this.field.defaultValue || null
-  },
-  computed: {
-    errorMessages() {
-      const errors = []
-      if ((!this.v && !this.v) || !this.v.fieldsValues[this.field.slug].$dirty) return errors
-      this.v.fieldsValues[this.field.slug].required === false && errors.push('Ce champ est requis')
-      this.v.fieldsValues[this.field.slug].minLength === false &&
-        errors.push(`${this.v.fieldsValues[this.field.slug].$params.minLength.min} caractères minimum`)
-      return errors
-    },
   },
   methods: {
     onInput() {

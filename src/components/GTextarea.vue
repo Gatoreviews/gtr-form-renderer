@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { errorsMessages } from '@/mixins/errorsMessages.mixin'
+
 export default {
   name: 'GTextArea',
   props: {
@@ -23,6 +25,7 @@ export default {
       required: true,
     },
   },
+  mixins: [errorsMessages],
   data: () => ({
     model: null,
   }),

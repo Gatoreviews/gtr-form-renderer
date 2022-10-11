@@ -1,0 +1,9 @@
+{
+  "error": {
+    "required": "This field is required",
+    "rating": "Please select a grade",
+    "email": "Please enter a valid email",
+    "minLength": "This field requires {count} characters minimum",
+    "maxLength": "This field requires {count} characters maximum"
+  }
+}

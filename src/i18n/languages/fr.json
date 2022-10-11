@@ -1,0 +1,15 @@
+{
+  "error": {
+    "required": "Ce champ est requis",
+    "rating": "Veuillez choisir une note",
+    "email": "Veuillez entrer un email valide",
+    "url": "Veuillez entrer une URL valide",
+    "minLength": "Ce champ requiert {count} caractères minimum",
+    "maxLength": "Ce champ requiert {count} caractères maximum",
+    "minValue": "La valeur de ce champ ne peut être inférieur à {value}",
+    "maxValue": "La valeur de ce champ ne peut être supérieure à {value}",
+    "notification": {
+      "error": "Une erreur est survenue pendant l'opération, veuillez réessayer plus tard."
+    }
+  }
+}

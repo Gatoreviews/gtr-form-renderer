@@ -1,152 +1,59 @@
 <template>
   <v-app>
     <v-main>
-      <v-container fluid>
-        <form id="form" class="form-renderer" novalidate autocomplete="off" @submit.prevent="onSubmit">
-          <v-overlay v-if="loading" :value="loading">
-            <v-progress-circular indeterminate :size="64" :width="6"></v-progress-circular>
-          </v-overlay>
-          <template v-else>
-            <div class="form-renderer__title">
-              {{ form.name }}
-            </div>
-            <div class="form-renderer__fields">
-              <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
-                <g-text-field v-if="field.type === 'text'" :field="field" :v="$v" @input="saveField" />
-              </div>
-
+      <form id="form" class="form-renderer" novalidate autocomplete="off" @submit.prevent="onSubmit">
+        <v-overlay v-if="loading" :value="loading" absolute>
+          <v-progress-circular indeterminate :size="64" :width="6"></v-progress-circular>
+        </v-overlay>
+        <template v-else>
+          <div class="form-renderer__title">
+            {{ form.name }}
+          </div>
+          <div class="form-renderer__fields">
+            <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
               <g-text-field
-                v-show="false"
-                :field="{
-                  label: 'Textfield',
-                  placeholder: 'Textfield Number',
-                  defaultValue: 1337,
-                  type: 'hidden',
-                }"
+                v-if="field.type === 'text' || field.type === 'email'"
+                :field="field"
+                :v="$v"
                 @input="saveField"
               />
 
-              <g-text-field
-                :field="{
-                  label: 'Textfield',
-                  placeholder: 'Textfield Number',
-                  defaultValue: 1337,
-                  type: 'number',
-                }"
-                @input="saveField"
-              />
-
-              <g-textarea
-                :field="{
-                  label: 'Textarea',
-                  placeholder: 'Textarea placeholder',
-                  defaultValue: 'Lorem ipsum',
-                }"
-                @input="saveField"
-              />
-              <g-select
-                :field="{
-                  label: 'Select',
-                  placeholder: 'Choisir une option',
-                  defaultValue: 'select-1',
-                  options: [
-                    { value: 'select-1', label: 'Option 1' },
-                    { value: 'select-2', label: 'Option 2' },
-                    { value: 'select-3', label: 'Option 3' },
-                  ],
-                }"
-                @input="saveField"
-              />
-
-              <g-select
-                :field="{
-                  label: 'Select Multiple',
-                  multiple: true,
-                  placeholder: 'Choisir une ou plsuieurs options',
-                  defaultValue: ['select-1', 'select-2'],
-                  options: [
-                    { value: 'select-1', label: 'Option 1' },
-                    { value: 'select-2', label: 'Option 2' },
-                    { value: 'select-3', label: 'Option 3' },
-                  ],
-                }"
-                @input="saveField"
-              />
               <g-date-picker
-                :field="{ label: 'Date', defaultValue: '2022-10-07', placeholder: 'Choisir une date' }"
+                v-if="field.type === 'datepicker'"
+                :field="field"
                 :locale="locale"
-                @change="saveField"
-              />
-              <g-date-picker
-                :field="{
-                  label: 'Date Range',
-                  multiple: true,
-                  defaultValue: ['2022-10-07', '2022-10-14'],
-                  placeholder: 'Choisir une date de début et de fin',
-                }"
-                :locale="locale"
-                @change="saveField"
-              />
-              <g-checkbox
-                :field="{ label: 'Checkbox', defaultValue: true, slug: 'checkbox-simple' }"
-                @change="saveField"
-              />
-              <g-checkbox
-                :field="{
-                  label: 'Checkbox Multiple',
-                  defaultValue: ['checkbox-2', 'checkbox-3'],
-                  options: [
-                    { value: 'checkbox-1', label: 'Checkbox 1' },
-                    { value: 'checkbox-2', label: 'Checkbox 2' },
-                    { value: 'checkbox-3', label: 'Checkbox 3' },
-                  ],
-                  slug: 'checkbox-multiple',
-                }"
-                :defaul-value="true"
-                @change="saveField"
-              />
-              <g-radio
-                :field="{
-                  label: 'Radio',
-                  defaultValue: 'radio-1',
-                  slug: 'radio',
-                  options: [
-                    { value: 'radio-1', label: 'Radio 1' },
-                    { value: 'radio-2', label: 'Radio 2' },
-                    { value: 'radio-3', label: 'Radio 3' },
-                  ],
-                }"
-                @change="saveField"
+                :v="$v"
+                @input="saveField"
               />
             </div>
-            <div class="form-renderer__cta">
-              <v-btn type="submit" rounded color="primary">{{ form.submit }}</v-btn>
-            </div>
-          </template>
-        </form>
-      </v-container>
+          </div>
+          <div class="form-renderer__cta">
+            <v-btn type="submit" rounded color="primary" :loadin="sending" :disabled="sending">{{ form.submit }}</v-btn>
+          </div>
+        </template>
+      </form>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required } from 'vuelidate/lib/validators'
-import { sendGetRequest, sendPostRequest } from './services/api.service'
-import GSelect from './components/GSelect.vue'
+import { getForm, postForm } from './services/form.service'
+import { rules } from './utils/rules.util'
 import GTextField from './components/GTextField.vue'
 import GDatePicker from './components/GDatePicker.vue'
-import GCheckbox from './components/GCheckbox.vue'
-import GRadio from './components/GRadio.vue'
-import GTextarea from './components/GTextarea.vue'
 
 export default {
-  components: { GTextField, GSelect, GDatePicker, GCheckbox, GRadio, GTextarea },
+  components: { GTextField, GDatePicker },
   name: 'FormRenderer',
   props: {
     formId: {
       type: String,
       required: true,
+    },
+    storeId: {
+      type: [String, Number],
+      required: false,
     },
     locale: {
       type: String,
@@ -155,29 +62,45 @@ export default {
   },
   data: () => ({
     loading: false,
+    sending: false,
     form: null,
     image: null,
-    fieldsValues: {},
+    fieldsValues: null,
+    fieldsRules: null,
   }),
   mixins: [validationMixin],
   async created() {
-    this.$vuetify.lang.current = this.locale
     this.loading = true
-    this.form = await sendGetRequest(`https://gtr-node-api-p.osc-fr1.scalingo.io/forms/${this.formId}`, {
-      headers: { locale: this.locale },
-    })
-    this.getDefaultValues()
+    //Set currrent locale for Vuetify & i18n
+    this.initLocale()
+    //Get form by its UUID
+    this.form = await getForm(this.formId, this.locale)
+    //Generate default values on init
+    this.initFieldsValues()
+    //Generate all validation rules on init
+    this.initFieldsRules()
     this.loading = false
   },
   methods: {
-    getDefaultValues() {
+    initLocale() {
+      this.$vuetify.lang.current = this.locale
+      this.$i18n.locale = this.locale
+    },
+    initFieldsValues() {
+      const filteredFields = this.getFilteredFields('defaultValue')
+      filteredFields.forEach(field => {
+        this.fieldsValues[field.slug] = field.defaultValue
+      })
+    },
+    initFieldsRules() {
+      const filteredFields = this.getFilteredFields('rules')
+      this.fieldsRules = rules(filteredFields)
+    },
+    getFilteredFields(key) {
       if (this.form && this.form.fields.length) {
-        this.form.fields
-          .filter(field => field.defaultValue)
-          .forEach(field => {
-            this.fieldsValues[field.slug] = field.defaultValue
-          })
+        return this.form.fields.filter(field => field[key])
       }
+      return []
     },
     saveField(field) {
       this.fieldsValues = {
@@ -187,25 +110,17 @@ export default {
     },
     async onSubmit() {
       this.$v.$touch()
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('leadSave')
-      await sendPostRequest(
-        `https://gtr-node-api-p.osc-fr1.scalingo.io/forms/${this.formId}`,
-        { fieldsValues: this.fieldsValues },
-        {
-          headers: { locale: this.locale, recaptcha: token },
-        }
-      )
+      if (!this.$v.$invalid) {
+        this.sending = true
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('leadSave')
+        await postForm(this.formId, this.locale, this.fieldsValues, token)
+        this.sending = false
+      }
     },
   },
   validations() {
-    return {
-      fieldsValues: {
-        'awesome-field': {
-          required,
-        },
-      },
-    }
+    return this.fieldsRules
   },
 }
 </script>
@@ -218,6 +133,7 @@ export default {
 
 <style scoped lang="scss">
 @import 'vuetify/dist/vuetify.min.css';
+@import '@/styles/global.scss';
 * {
   box-sizing: border-box;
 }
@@ -225,7 +141,7 @@ export default {
   &__title {
     font-weight: bold;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   &__cta {
