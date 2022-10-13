@@ -12,12 +12,11 @@
           <div class="form-renderer__fields">
             <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
               <g-text-field
-                v-if="field.type === 'text' || field.type === 'email'"
+                v-if="field.type === 'text' || field.type === 'email' || field.type === 'number'"
                 :field="field"
                 :v="$v"
                 @input="saveField"
               />
-
               <g-date-picker
                 v-if="field.type === 'datepicker'"
                 :field="field"
@@ -25,6 +24,10 @@
                 :v="$v"
                 @input="saveField"
               />
+              <g-select v-if="field.type === 'select'" :field="field" :v="$v" @input="saveField" />
+              <g-radio v-if="field.type === 'radio'" :field="field" :v="$v" @input="saveField" />
+              <g-checkbox v-if="field.type === 'checkbox'" :field="field" :v="$v" @input="saveField" />
+              <g-textarea v-if="field.type === 'textarea'" :field="field" :v="$v" @input="saveField" />
             </div>
           </div>
           <div class="form-renderer__cta">
@@ -42,9 +45,13 @@ import { getForm, postForm } from './services/form.service'
 import { rules } from './utils/rules.util'
 import GTextField from './components/GTextField.vue'
 import GDatePicker from './components/GDatePicker.vue'
+import GSelect from './components/GSelect.vue'
+import GRadio from './components/GRadio.vue'
+import GCheckbox from './components/GCheckbox.vue'
+import GTextarea from './components/GTextarea.vue'
 
 export default {
-  components: { GTextField, GDatePicker },
+  components: { GTextField, GDatePicker, GSelect, GRadio, GCheckbox, GTextarea },
   name: 'FormRenderer',
   props: {
     formId: {
@@ -65,7 +72,7 @@ export default {
     sending: false,
     form: null,
     image: null,
-    fieldsValues: null,
+    fieldsValues: {},
     fieldsRules: null,
   }),
   mixins: [validationMixin],

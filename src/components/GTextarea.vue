@@ -5,6 +5,7 @@
     :placeholder="field.placeholder"
     :type="field.type"
     :name="field.slug"
+    :error-messages="errorMessages"
     no-resize
     auto-grow
     outlined
@@ -23,6 +24,11 @@ export default {
     field: {
       type: Object,
       required: true,
+    },
+    v: {
+      type: Object,
+      required: false,
+      default: () => {},
     },
   },
   mixins: [errorsMessages],

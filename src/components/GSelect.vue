@@ -7,6 +7,7 @@
     :label="field.label"
     :placeholder="field.placeholder"
     :multiple="field.multiple"
+    :error-messages="errorMessages"
     outlined
     solo
     flat
@@ -23,6 +24,11 @@ export default {
     field: {
       type: Object,
       required: true,
+    },
+    v: {
+      type: Object,
+      required: false,
+      default: () => {},
     },
   },
   mixins: [errorsMessages],

@@ -6,6 +6,7 @@
       :key="option.value"
       :label="option.label"
       :value="option.value"
+      :error-messages="errorMessages"
       hide-details
       @change="onChange"
     />
@@ -24,6 +25,11 @@ export default {
     field: {
       type: Object,
       required: true,
+    },
+    v: {
+      type: Object,
+      required: false,
+      default: () => {},
     },
   },
   mixins: [errorsMessages],

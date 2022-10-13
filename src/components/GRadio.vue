@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group v-model="model" @change="onChange">
+  <v-radio-group v-model="model" @change="onChange" :error-messages="errorMessages">
     <v-radio v-for="option in field.options" :key="option.value" :label="option.label" :value="option.value"></v-radio>
   </v-radio-group>
 </template>
@@ -13,6 +13,11 @@ export default {
     field: {
       type: Object,
       required: true,
+    },
+    v: {
+      type: Object,
+      required: false,
+      default: () => {},
     },
   },
   mixins: [errorsMessages],
