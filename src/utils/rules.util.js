@@ -1,4 +1,4 @@
-import { required, minLength, maxLength, minValue, maxValue, email, url } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, minValue, maxValue, email, url, sameAs } from 'vuelidate/lib/validators'
 
 export const rules = fields => {
   const rules = {
@@ -9,9 +9,18 @@ export const rules = fields => {
     Object.entries(field.rules).forEach(([key, value]) => {
       switch (key) {
         case 'required':
-          rules.fieldsValues[field.slug] = {
-            ...rules.fieldsValues[field.slug],
-            required,
+          if (field.type === 'checkbox' && !field.options) {
+            rules.fieldsValues[field.slug] = {
+              ...rules.fieldsValues[field.slug],
+              sameAs: sameAs(() => {
+                return field.rules.required
+              }),
+            }
+          } else {
+            rules.fieldsValues[field.slug] = {
+              ...rules.fieldsValues[field.slug],
+              required,
+            }
           }
           break
         case 'minLength':

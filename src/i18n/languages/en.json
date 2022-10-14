@@ -3,7 +3,15 @@
     "required": "This field is required",
     "rating": "Please select a grade",
     "email": "Please enter a valid email",
+    "url": "Please enter a valid URL",
     "minLength": "This field requires {count} characters minimum",
-    "maxLength": "This field requires {count} characters maximum"
+    "maxLength": "This field requires {count} characters maximum",
+    "minLengthArray": "Please select {count} options minimum",
+    "maxLengthArray": "Please select {count} options maximum",
+    "minValue": "The field value cannot be less than {value}.",
+    "maxValue": "The field value cannot be more than {value}.",
+    "notification": {
+      "error": "An error occurred during the operation, please try again later."
+    }
   }
 }

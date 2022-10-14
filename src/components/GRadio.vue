@@ -1,5 +1,8 @@
 <template>
   <v-radio-group v-model="model" @change="onChange" :error-messages="errorMessages">
+    <template #label>
+      {{ field.label }}
+    </template>
     <v-radio v-for="option in field.options" :key="option.value" :label="option.label" :value="option.value"></v-radio>
   </v-radio-group>
 </template>

@@ -43,6 +43,7 @@
 import { validationMixin } from 'vuelidate'
 import { getForm, postForm } from './services/form.service'
 import { rules } from './utils/rules.util'
+import { removeNullFromObject } from './utils/object.util'
 import GTextField from './components/GTextField.vue'
 import GDatePicker from './components/GDatePicker.vue'
 import GSelect from './components/GSelect.vue'
@@ -114,6 +115,7 @@ export default {
         ...this.fieldsValues,
         ...field,
       }
+      this.fieldsValues = removeNullFromObject(this.fieldsValues)
     },
     async onSubmit() {
       this.$v.$touch()

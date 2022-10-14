@@ -1,6 +1,6 @@
 <template>
   <v-textarea
-    v-model="model"
+    v-model.trim="model"
     :label="field.label"
     :placeholder="field.placeholder"
     :type="field.type"
@@ -41,7 +41,7 @@ export default {
   methods: {
     onInput() {
       this.$emit('input', {
-        [this.field.slug]: this.model,
+        [this.field.slug]: this.model || null,
       })
     },
   },

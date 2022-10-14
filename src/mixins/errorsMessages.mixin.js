@@ -5,6 +5,19 @@ export const errorsMessages = {
       if (this.v.fieldsValues[this.field.slug]) {
         if (!this.v.fieldsValues[this.field.slug].$dirty) return errors
         this.v.fieldsValues[this.field.slug].required === false && errors.push(this.$t('error.required'))
+        this.v.fieldsValues[this.field.slug].sameAs === false && errors.push(this.$t('error.required'))
+        this.v.fieldsValues[this.field.slug].minLength === false &&
+          this.field.options &&
+          this.field.options.length > 0 &&
+          errors.push(
+            this.$t('error.minLengthArray', { count: this.v.fieldsValues[this.field.slug].$params.minLength.min })
+          )
+        this.v.fieldsValues[this.field.slug].maxLength === false &&
+          this.field.options &&
+          this.field.options.length > 0 &&
+          errors.push(
+            this.$t('error.maxLengthArray', { count: this.v.fieldsValues[this.field.slug].$params.maxLength.max })
+          )
         this.v.fieldsValues[this.field.slug].minLength === false &&
           errors.push(this.$t('error.minLength', { count: this.v.fieldsValues[this.field.slug].$params.minLength.min }))
         this.v.fieldsValues[this.field.slug].maxLength === false &&
