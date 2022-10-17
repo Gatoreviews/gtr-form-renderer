@@ -1,6 +1,6 @@
 {
   "name": "@gatoreviews/gtr-form-renderer",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Form renderer for GTR Suite",
   "author": "api@gtrsuite.com",
   "homepage": "https://github.com/Gatoreviews/gtr-form-renderer#readme",
@@ -10,7 +10,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
-  "main": "dist/gtr-form-renderer.umd.js",
+  "main": "dist/gtr-form-renderer.umd.min.js",
   "publishConfig": {
     "@gatoreviews:registry": "https://npm.pkg.github.com"
   },

@@ -26,8 +26,8 @@ export const errorsMessages = {
           errors.push(this.$t('error.minValue', { value: this.v.fieldsValues[this.field.slug].$params.minValue.min }))
         this.v.fieldsValues[this.field.slug].maxValue === false &&
           errors.push(this.$t('error.maxValue', { value: this.v.fieldsValues[this.field.slug].$params.maxValue.max }))
-        this.v.fieldsValues[this.field.slug].maxValue === false && errors.push(this.$t('error.email'))
-        this.v.fieldsValues[this.field.slug].maxValue === false && errors.push(this.$t('error.url'))
+        this.v.fieldsValues[this.field.slug].email === false && errors.push(this.$t('error.email'))
+        this.v.fieldsValues[this.field.slug].url === false && errors.push(this.$t('error.url'))
       }
       return errors
     },

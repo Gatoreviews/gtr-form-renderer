@@ -65,3 +65,39 @@ export const rules = fields => {
 
   return rules
 }
+
+export const operators = {
+  exists: comparedValue => {
+    return typeof comparedValue !== 'undefined'
+  },
+  equals: (comparedValue, value) => {
+    return value == comparedValue
+  },
+  not_equals: (comparedValue, value) => {
+    return value != comparedValue
+  },
+  contains: (comparedValue, value) => {
+    return comparedValue && comparedValue.includes(value)
+  },
+  superior: (comparedValue, value) => {
+    return value > comparedValue
+  },
+  superior_equals: (comparedValue, value) => {
+    return value >= comparedValue
+  },
+  inferior: (comparedValue, value) => {
+    return value < comparedValue
+  },
+  inferior_equals: (comparedValue, value) => {
+    return value <= comparedValue
+  },
+  in: (comparedValue, value) => {
+    return value.includes(comparedValue)
+  },
+  not_in: (comparedValue, value) => {
+    return !value.includes(comparedValue)
+  },
+  all: (comparedValue, value) => {
+    return value.every(val => comparedValue.includes(val))
+  },
+}

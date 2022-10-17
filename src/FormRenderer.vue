@@ -12,22 +12,42 @@
           <div class="form-renderer__fields">
             <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
               <g-text-field
-                v-if="field.type === 'text' || field.type === 'email' || field.type === 'number'"
+                v-if="textFieldTypes(field.type) && condition(field.condition)"
                 :field="field"
                 :v="$v"
                 @input="saveField"
               />
               <g-date-picker
-                v-if="field.type === 'datepicker'"
+                v-if="field.type === 'datepicker' && condition(field.condition)"
                 :field="field"
                 :locale="locale"
                 :v="$v"
                 @input="saveField"
               />
-              <g-select v-if="field.type === 'select'" :field="field" :v="$v" @input="saveField" />
-              <g-radio v-if="field.type === 'radio'" :field="field" :v="$v" @input="saveField" />
-              <g-checkbox v-if="field.type === 'checkbox'" :field="field" :v="$v" @input="saveField" />
-              <g-textarea v-if="field.type === 'textarea'" :field="field" :v="$v" @input="saveField" />
+              <g-select
+                v-if="field.type === 'select' && condition(field.condition)"
+                :field="field"
+                :v="$v"
+                @input="saveField"
+              />
+              <g-radio
+                v-if="field.type === 'radio' && condition(field.condition)"
+                :field="field"
+                :v="$v"
+                @input="saveField"
+              />
+              <g-checkbox
+                v-if="field.type === 'checkbox' && condition(field.condition)"
+                :field="field"
+                :v="$v"
+                @input="saveField"
+              />
+              <g-textarea
+                v-if="field.type === 'textarea' && condition(field.condition)"
+                :field="field"
+                :v="$v"
+                @input="saveField"
+              />
             </div>
           </div>
           <div class="form-renderer__cta">
@@ -42,7 +62,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { getForm, postForm } from './services/form.service'
-import { rules } from './utils/rules.util'
+import { rules, operators } from './utils/rules.util'
 import { removeNullFromObject } from './utils/object.util'
 import GTextField from './components/GTextField.vue'
 import GDatePicker from './components/GDatePicker.vue'
@@ -97,7 +117,7 @@ export default {
     initFieldsValues() {
       const filteredFields = this.getFilteredFields('defaultValue')
       filteredFields.forEach(field => {
-        this.fieldsValues[field.slug] = field.defaultValue
+        this.$set(this.fieldsValues, field.slug, field.defaultValue)
       })
     },
     initFieldsRules() {
@@ -126,6 +146,18 @@ export default {
         await postForm(this.formId, this.locale, this.fieldsValues, token)
         this.sending = false
       }
+    },
+    textFieldTypes(type) {
+      return ['text', 'email', 'url', 'number', 'tel'].includes(type)
+    },
+    condition(condition) {
+      if (condition) {
+        return (
+          operators[condition.operator] &&
+          operators[condition.operator](this.fieldsValues[condition.field], condition.value)
+        )
+      }
+      return true
     },
   },
   validations() {
