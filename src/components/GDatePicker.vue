@@ -15,7 +15,7 @@
         flat
       ></v-text-field>
     </template>
-    <v-date-picker v-model="model" :range="field.multiple" scrollable @change="onChange" :first-day-of-week="1" />
+    <v-date-picker v-model="model" :range="field.multiple" scrollable @change="onInput" :first-day-of-week="1" />
   </v-menu>
 </template>
 
@@ -59,12 +59,16 @@ export default {
     },
   },
   methods: {
-    onChange() {
-      this.$refs.menu.save(this.model)
+    onInput() {
+      this.$refs.menu && this.$refs.menu.save(this.model)
       this.$emit('input', {
-        [this.field.slug]: this.model,
+        [this.field.slug]: this.model || null,
       })
     },
+  },
+  destroyed() {
+    this.model = null
+    this.onInput()
   },
 }
 </script>

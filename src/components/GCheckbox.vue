@@ -11,7 +11,7 @@
       :value="option.value"
       :error-messages="errorMessages"
       :hide-details="i !== field.options.length - 1"
-      @change="onChange"
+      @change="onInput"
     />
   </div>
   <div v-else>
@@ -20,7 +20,7 @@
       class="g-checkbox"
       :label="field.label"
       :error-messages="errorMessages"
-      @change="onChange"
+      @change="onInput"
     />
   </div>
 </template>
@@ -49,11 +49,15 @@ export default {
     this.model = this.field.defaultValue || null
   },
   methods: {
-    onChange() {
+    onInput() {
       this.$emit('input', {
-        [this.field.slug]: this.model,
+        [this.field.slug]: this.model || null,
       })
     },
+  },
+  destroyed() {
+    this.model = null
+    this.onInput()
   },
 }
 </script>

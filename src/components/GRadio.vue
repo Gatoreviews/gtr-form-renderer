@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group v-model="model" @change="onChange" :error-messages="errorMessages">
+  <v-radio-group v-model="model" @change="onInput" :error-messages="errorMessages">
     <template #label>
       {{ field.label }}
     </template>
@@ -31,11 +31,15 @@ export default {
     this.model = this.field.defaultValue || null
   },
   methods: {
-    onChange() {
+    onInput() {
       this.$emit('input', {
-        [this.field.slug]: this.model,
+        [this.field.slug]: this.model || null,
       })
     },
+  },
+  destroyed() {
+    this.model = null
+    this.onInput()
   },
 }
 </script>

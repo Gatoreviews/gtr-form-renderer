@@ -45,5 +45,9 @@ export default {
       })
     },
   },
+  destroyed() {
+    this.model = null
+    this.onInput()
+  },
 }
 </script>

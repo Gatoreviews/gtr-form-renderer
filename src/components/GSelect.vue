@@ -41,9 +41,13 @@ export default {
   methods: {
     onInput() {
       this.$emit('input', {
-        [this.field.slug]: this.model,
+        [this.field.slug]: this.model || null,
       })
     },
+  },
+  destroyed() {
+    this.model = null
+    this.onInput()
   },
 }
 </script>

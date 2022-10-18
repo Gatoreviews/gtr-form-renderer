@@ -87,6 +87,11 @@ export default {
       type: String,
       required: true,
     },
+    devMode: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   data: () => ({
     loading: false,
@@ -102,7 +107,7 @@ export default {
     //Set currrent locale for Vuetify & i18n
     this.initLocale()
     //Get form by its UUID
-    this.form = await getForm(this.formId, this.locale)
+    this.form = await getForm(this.formId, this.locale, this.devMode)
     //Generate default values on init
     this.initFieldsValues()
     //Generate all validation rules on init
@@ -143,7 +148,7 @@ export default {
         this.sending = true
         await this.$recaptchaLoaded()
         const token = await this.$recaptcha('leadSave')
-        await postForm(this.formId, this.locale, this.fieldsValues, token)
+        await postForm(this.formId, this.locale, this.fieldsValues, token, this.devMode)
         this.sending = false
       }
     },

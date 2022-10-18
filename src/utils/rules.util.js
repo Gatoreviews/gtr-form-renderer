@@ -71,7 +71,14 @@ export const operators = {
     return typeof comparedValue !== 'undefined'
   },
   equals: (comparedValue, value) => {
-    return value == comparedValue
+    if (typeof comparedValue === 'string' && typeof value === 'string') {
+      return value == comparedValue
+    } else if (Array.isArray(comparedValue) && Array.isArray(value)) {
+      const sortedComparedValue = [...comparedValue].sort()
+      const sortedValue = [...value].sort()
+      return JSON.stringify(sortedComparedValue) === JSON.stringify(sortedValue)
+    }
+    return false
   },
   not_equals: (comparedValue, value) => {
     return value != comparedValue
@@ -80,24 +87,24 @@ export const operators = {
     return comparedValue && comparedValue.includes(value)
   },
   superior: (comparedValue, value) => {
-    return value > comparedValue
+    return comparedValue > value
   },
   superior_equals: (comparedValue, value) => {
-    return value >= comparedValue
+    return comparedValue >= value
   },
   inferior: (comparedValue, value) => {
-    return value < comparedValue
+    return comparedValue < value
   },
   inferior_equals: (comparedValue, value) => {
-    return value <= comparedValue
+    return comparedValue <= value
   },
   in: (comparedValue, value) => {
-    return value.includes(comparedValue)
+    return comparedValue && value.includes(comparedValue)
   },
   not_in: (comparedValue, value) => {
-    return !value.includes(comparedValue)
+    return comparedValue && !value.includes(comparedValue)
   },
   all: (comparedValue, value) => {
-    return value.every(val => comparedValue.includes(val))
+    return comparedValue && value.every(val => comparedValue.includes(val))
   },
 }
