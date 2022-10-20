@@ -9,47 +9,54 @@
           <div class="form-renderer__title">
             {{ form.name }}
           </div>
-          <div class="form-renderer__fields">
-            <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
+          <g-grid v-if="form.ui.elements && form.ui.elements.length > 0" :elements="form.ui.elements">
+            <template #field="{ field }">
               <g-text-field
-                v-if="textFieldTypes(field.type) && condition(field.condition)"
-                :field="field"
+                v-if="textFieldTypes(formField(field.slug).type) && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
                 :v="$v"
                 @input="saveField"
               />
               <g-date-picker
-                v-if="field.type === 'datepicker' && condition(field.condition)"
-                :field="field"
+                v-if="formField(field.slug).type === 'datepicker' && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
                 :locale="locale"
                 :v="$v"
                 @input="saveField"
               />
               <g-select
-                v-if="field.type === 'select' && condition(field.condition)"
-                :field="field"
+                v-if="formField(field.slug).type === 'select' && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
                 :v="$v"
                 @input="saveField"
               />
               <g-radio
-                v-if="field.type === 'radio' && condition(field.condition)"
-                :field="field"
+                v-if="formField(field.slug).type === 'radio' && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
                 :v="$v"
                 @input="saveField"
               />
               <g-checkbox
-                v-if="field.type === 'checkbox' && condition(field.condition)"
-                :field="field"
+                v-if="formField(field.slug).type === 'checkbox' && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
                 :v="$v"
                 @input="saveField"
               />
               <g-textarea
-                v-if="field.type === 'textarea' && condition(field.condition)"
-                :field="field"
+                v-if="formField(field.slug).type === 'textarea' && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
                 :v="$v"
                 @input="saveField"
               />
-            </div>
-          </div>
+              <g-phone
+                v-if="formField(field.slug).type === 'tel' && condition(formField(field.slug).condition)"
+                :field="formField(field.slug)"
+                :locale="locale"
+                :v="$v"
+                @input="saveField"
+              />
+            </template>
+          </g-grid>
           <div class="form-renderer__cta">
             <v-btn type="submit" rounded color="primary" :loadin="sending" :disabled="sending">{{ form.submit }}</v-btn>
           </div>
@@ -71,6 +78,7 @@ import GRadio from './components/GRadio.vue'
 import GCheckbox from './components/GCheckbox.vue'
 import GTextarea from './components/GTextarea.vue'
 import GPhone from './components/GPhone.vue'
+import GGrid from './components/GGrid.vue'
 
 export default {
   components: {
@@ -81,6 +89,7 @@ export default {
     GCheckbox,
     GTextarea,
     GPhone,
+    GGrid,
   },
   name: 'FormRenderer',
   props: {
@@ -196,6 +205,9 @@ export default {
   box-sizing: border-box;
 }
 .form-renderer {
+  overflow-x: hidden;
+  padding-bottom: 6px;
+
   &__title {
     font-weight: bold;
     margin-bottom: 1rem;
