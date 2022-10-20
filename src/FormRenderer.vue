@@ -70,9 +70,18 @@ import GSelect from './components/GSelect.vue'
 import GRadio from './components/GRadio.vue'
 import GCheckbox from './components/GCheckbox.vue'
 import GTextarea from './components/GTextarea.vue'
+import GPhone from './components/GPhone.vue'
 
 export default {
-  components: { GTextField, GDatePicker, GSelect, GRadio, GCheckbox, GTextarea },
+  components: {
+    GTextField,
+    GDatePicker,
+    GSelect,
+    GRadio,
+    GCheckbox,
+    GTextarea,
+    GPhone,
+  },
   name: 'FormRenderer',
   props: {
     formId: {
@@ -153,7 +162,7 @@ export default {
       }
     },
     textFieldTypes(type) {
-      return ['text', 'email', 'url', 'number', 'tel'].includes(type)
+      return ['text', 'email', 'url', 'number'].includes(type)
     },
     condition(condition) {
       if (condition) {
@@ -163,6 +172,9 @@ export default {
         )
       }
       return true
+    },
+    formField(slug) {
+      return this.form.fields.find(field => field.slug === slug)
     },
   },
   validations() {

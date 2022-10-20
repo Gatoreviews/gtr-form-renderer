@@ -1,4 +1,5 @@
 import { required, minLength, maxLength, minValue, maxValue, email, url, sameAs } from 'vuelidate/lib/validators'
+import { phone } from '@/validators/phone.validator'
 
 export const rules = fields => {
   const rules = {
@@ -59,6 +60,12 @@ export const rules = fields => {
             url,
           }
           break
+        case 'phone':
+          rules.fieldsValues[field.slug] = {
+            ...rules.fieldsValues[field.slug],
+            phone,
+          }
+          break
       }
     })
   })
@@ -99,6 +106,9 @@ export const operators = {
     return comparedValue <= value
   },
   in: (comparedValue, value) => {
+    if (Array.isArray(comparedValue) && Array.isArray(value)) {
+      return comparedValue.every(val => value.includes(val))
+    }
     return comparedValue && value.includes(comparedValue)
   },
   not_in: (comparedValue, value) => {

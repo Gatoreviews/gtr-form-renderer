@@ -4,6 +4,7 @@
     "rating": "Veuillez choisir une note",
     "email": "Veuillez entrer un email valide",
     "url": "Veuillez entrer une URL valide",
+    "phone": "Veuillez entrer un numéro de téléphone valide",
     "minLength": "Ce champ requiert {count} caractères minimum",
     "maxLength": "Ce champ requiert {count} caractères maximum",
     "minLengthArray": "Veuillez choisir {count} options minimum",
@@ -12,6 +13,14 @@
     "maxValue": "La valeur de ce champ ne peut être supérieure à {value}",
     "notification": {
       "error": "Une erreur est survenue pendant l'opération, veuillez réessayer plus tard."
+    }
+  },
+  "field": {
+    "phone": {
+      "country": {
+        "label": "Code pays",
+        "placeholder": "Saisir votre code pays"
+      }
     }
   }
 }

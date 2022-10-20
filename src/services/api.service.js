@@ -4,7 +4,6 @@ const api = axios.create({
   baseUlr: '/',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Headers': 'Authorization',
   },
 })
 

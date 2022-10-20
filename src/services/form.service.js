@@ -23,3 +23,7 @@ export const postForm = async (formId, locale, fieldsValues, recaptcha, devMode)
     }
   )
 }
+
+export const getCountryCode = async () => {
+  return await sendGetRequest('https://ip2c.org/s')
+}

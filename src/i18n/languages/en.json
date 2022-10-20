@@ -4,6 +4,7 @@
     "rating": "Please select a grade",
     "email": "Please enter a valid email",
     "url": "Please enter a valid URL",
+    "phone": "Please enter a valid phone number",
     "minLength": "This field requires {count} characters minimum",
     "maxLength": "This field requires {count} characters maximum",
     "minLengthArray": "Please select {count} options minimum",
@@ -12,6 +13,14 @@
     "maxValue": "The field value cannot be more than {value}.",
     "notification": {
       "error": "An error occurred during the operation, please try again later."
+    }
+  },
+  "field": {
+    "phone": {
+      "country": {
+        "label": "Country code",
+        "placeholder": "Enter your country code"
+      }
     }
   }
 }
