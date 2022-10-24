@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.0.2...v1.1.0) (2022-10-24)
+
+
+### Features
+
+* **dependencies:** add babel plugin for compatibility ([b2eb0ca](https://github.com/Gatoreviews/gtr-form-renderer/commit/b2eb0ca98fe43b87753cadc4b8c6ed30a352cf87))
+
 ## [1.0.2](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.0.1...v1.0.2) (2022-10-24)
 
 
