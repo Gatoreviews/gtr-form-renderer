@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.1.0...v1.1.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* **style:** fix application background ([f90d9ae](https://github.com/Gatoreviews/gtr-form-renderer/commit/f90d9aea265aec372107f91dee7d10dd67d4f1b5))
+* **phone:** fix phone field border radius ([79125b8](https://github.com/Gatoreviews/gtr-form-renderer/commit/79125b8cfee388502dae9829777da087ce2f3014))
+
 # [1.1.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.0.2...v1.1.0) (2022-10-24)
 
 
