@@ -127,11 +127,11 @@ export default {
   position: relative;
 
   &__country {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     max-width: 120px;
 
     fieldset {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
       border-right: 0 !important;
     }
 
@@ -144,6 +144,9 @@ export default {
   }
 
   &__number {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
     &.v-text-field--outlined {
       position: initial;
     }
@@ -152,11 +155,6 @@ export default {
       position: absolute;
       left: 0;
       bottom: 0;
-    }
-
-    fieldset {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
     }
   }
 }
