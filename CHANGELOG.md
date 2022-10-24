@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.0.0...v1.0.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* **workflows:** run build command on release package ([58534cd](https://github.com/Gatoreviews/gtr-form-renderer/commit/58534cdaad8ccc49ebe18e72419ccc6981a456a4))
+
 # 1.0.0 (2022-10-24)
 
 
