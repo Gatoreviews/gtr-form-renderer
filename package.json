@@ -19,7 +19,6 @@
     "url": "git+https://github.com/Gatoreviews/gtr-form-renderer.git"
   },
   "dependencies": {
-    "@gatoreviews/node-semantic-release": "^1.0.4",
     "@mdi/js": "^7.0.96",
     "axios": "^1.1.0",
     "core-js": "^3.8.3",
@@ -33,6 +32,7 @@
     "vuetify": "^2.6.10"
   },
   "devDependencies": {
+    "@gatoreviews/node-semantic-release": "^1.0.4",
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
