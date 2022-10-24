@@ -1,5 +1,5 @@
 <template>
-  <v-menu v-model="menu" ref="menu" :close-on-content-click="false" :return-value.sync="model" min-width="auto">
+  <v-menu v-model="menu" ref="menu" :close-on-content-click="false" :return-value.sync="model" max-width="290">
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
         :value="displayedDate"

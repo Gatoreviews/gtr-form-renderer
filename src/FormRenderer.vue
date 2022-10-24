@@ -6,52 +6,52 @@
           <v-progress-circular indeterminate :size="64" :width="6"></v-progress-circular>
         </v-overlay>
         <template v-else>
-          <div class="form-renderer__title">
-            {{ form.name }}
+          <!-- Render title only if the form have a name -->
+          <div v-if="form.ui.name" class="form-renderer__title">
+            {{ form.ui.name }}
           </div>
-          <div class="form-renderer__fields">
-            <div v-for="field in form.fields" :key="field.slug" class="form-renderer__fields__item">
-              <g-text-field
-                v-if="textFieldTypes(field.type) && condition(field.condition)"
+          <!-- Render grid if the form ui avec elements at root -->
+          <g-grid v-if="form.ui.elements && form.ui.elements.length > 0" :elements="form.ui.elements">
+            <template #field="{ field }">
+              <g-field
+                :form="form"
                 :field="field"
-                :v="$v"
-                @input="saveField"
-              />
-              <g-date-picker
-                v-if="field.type === 'datepicker' && condition(field.condition)"
-                :field="field"
+                :fields-values="fieldsValues"
                 :locale="locale"
                 :v="$v"
-                @input="saveField"
+                @save="saveField"
               />
-              <g-select
-                v-if="field.type === 'select' && condition(field.condition)"
-                :field="field"
-                :v="$v"
-                @input="saveField"
-              />
-              <g-radio
-                v-if="field.type === 'radio' && condition(field.condition)"
-                :field="field"
-                :v="$v"
-                @input="saveField"
-              />
-              <g-checkbox
-                v-if="field.type === 'checkbox' && condition(field.condition)"
-                :field="field"
-                :v="$v"
-                @input="saveField"
-              />
-              <g-textarea
-                v-if="field.type === 'textarea' && condition(field.condition)"
-                :field="field"
-                :v="$v"
-                @input="saveField"
-              />
-            </div>
-          </div>
-          <div class="form-renderer__cta">
-            <v-btn type="submit" rounded color="primary" :loadin="sending" :disabled="sending">{{ form.submit }}</v-btn>
+            </template>
+          </g-grid>
+          <!-- Render stepper if the form ui avec stepper at root -->
+          <g-stepper
+            v-if="form.ui.stepper && form.ui.stepper.steps.length > 0"
+            :steps="form.ui.stepper.steps"
+            :next-label="form.ui.stepper.next"
+            :previous-label="form.ui.stepper.previous"
+            :submit-label="form.ui.submit"
+            :v="$v"
+          >
+            <template #step="{ elements }">
+              <g-grid v-if="elements && elements.length > 0" :elements="elements">
+                <template #field="{ field }">
+                  <g-field
+                    :form="form"
+                    :field="field"
+                    :fields-values="fieldsValues"
+                    :locale="locale"
+                    :v="$v"
+                    @save="saveField"
+                  />
+                </template>
+              </g-grid>
+            </template>
+          </g-stepper>
+          <!-- Render submit button only if we don't have stepper -->
+          <div v-if="!form.ui.stepper" class="form-renderer__cta">
+            <v-btn type="submit" rounded color="primary" :loadin="sending" :disabled="sending">
+              {{ form.ui.submit }}
+            </v-btn>
           </div>
         </template>
       </form>
@@ -62,17 +62,18 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { getForm, postForm } from './services/form.service'
-import { rules, operators } from './utils/rules.util'
+import { rules } from './utils/rules.util'
 import { removeNullFromObject } from './utils/object.util'
-import GTextField from './components/GTextField.vue'
-import GDatePicker from './components/GDatePicker.vue'
-import GSelect from './components/GSelect.vue'
-import GRadio from './components/GRadio.vue'
-import GCheckbox from './components/GCheckbox.vue'
-import GTextarea from './components/GTextarea.vue'
+import GGrid from './components/GGrid.vue'
+import GStepper from './components/GStepper.vue'
+import GField from './components/GField.vue'
 
 export default {
-  components: { GTextField, GDatePicker, GSelect, GRadio, GCheckbox, GTextarea },
+  components: {
+    GGrid,
+    GStepper,
+    GField,
+  },
   name: 'FormRenderer',
   props: {
     formId: {
@@ -148,21 +149,9 @@ export default {
         this.sending = true
         await this.$recaptchaLoaded()
         const token = await this.$recaptcha('leadSave')
-        await postForm(this.formId, this.locale, this.fieldsValues, token, this.devMode)
+        await postForm(this.formId, this.storeId, this.locale, this.fieldsValues, token, this.devMode)
         this.sending = false
       }
-    },
-    textFieldTypes(type) {
-      return ['text', 'email', 'url', 'number', 'tel'].includes(type)
-    },
-    condition(condition) {
-      if (condition) {
-        return (
-          operators[condition.operator] &&
-          operators[condition.operator](this.fieldsValues[condition.field], condition.value)
-        )
-      }
-      return true
     },
   },
   validations() {
@@ -172,6 +161,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/styles/global.scss';
+
 .v-application .v-application--wrap {
   min-height: initial;
 }
@@ -179,11 +170,13 @@ export default {
 
 <style scoped lang="scss">
 @import 'vuetify/dist/vuetify.min.css';
-@import '@/styles/global.scss';
 * {
   box-sizing: border-box;
 }
 .form-renderer {
+  overflow-x: hidden;
+  padding-bottom: 6px;
+
   &__title {
     font-weight: bold;
     margin-bottom: 1rem;

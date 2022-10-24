@@ -9,17 +9,21 @@ export const getForm = async (formId, locale, devMode) => {
   })
 }
 
-export const postForm = async (formId, locale, fieldsValues, recaptcha, devMode) => {
+export const postForm = async (formId, storeId, locale, fieldsValues, recaptcha, devMode) => {
   await sendPostRequest(
     `${LEADS_API_URL(devMode)}`,
     {
       formId,
+      storeId,
       locale,
-      storeId: '1',
       fieldsValues,
     },
     {
       headers: { recaptcha },
     }
   )
+}
+
+export const getCountryCode = async () => {
+  return await sendGetRequest('https://ip2c.org/s')
 }

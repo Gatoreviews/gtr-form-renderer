@@ -28,6 +28,7 @@ export const errorsMessages = {
           errors.push(this.$t('error.maxValue', { value: this.v.fieldsValues[this.field.slug].$params.maxValue.max }))
         this.v.fieldsValues[this.field.slug].email === false && errors.push(this.$t('error.email'))
         this.v.fieldsValues[this.field.slug].url === false && errors.push(this.$t('error.url'))
+        this.v.fieldsValues[this.field.slug].phone === false && errors.push(this.$t('error.phone'))
       }
       return errors
     },
