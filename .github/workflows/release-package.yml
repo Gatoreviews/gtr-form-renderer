@@ -8,17 +8,39 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/
-      - run: yarn install
-      - run: yarn build
-      - run: npm publish
+      - name: 'Cache node modules'
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: 'Install dependencies'
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --pure-lockfile
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_TOKEN: ${{ secrets.CI_GH_TOKEN }}
+      - name: 'Release'
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: |
+          yarn gh-action-gtr-semantic-release
+        env:
+          SEMVER_RELEASE_TYPE: LIBRARY_NODE
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTION_GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # https://github.community/t5/GitHub-Actions/Workflow-is-failing-if-no-job-can-be-ran-due-to-condition/m-p/38186#M3250
+  always_job:
+    name: Aways run job
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Always run
+        run: echo "This job is used to prevent the workflow to fail when all other jobs are skipped."

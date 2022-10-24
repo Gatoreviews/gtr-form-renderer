@@ -19,6 +19,7 @@
     "url": "git+https://github.com/Gatoreviews/gtr-form-renderer.git"
   },
   "dependencies": {
+    "@gatoreviews/node-semantic-release": "^1.0.4",
     "@mdi/js": "^7.0.96",
     "axios": "^1.1.0",
     "core-js": "^3.8.3",
