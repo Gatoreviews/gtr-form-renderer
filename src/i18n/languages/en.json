@@ -22,5 +22,10 @@
         "placeholder": "Enter your country code"
       }
     }
+  },
+  "form": {
+    "loader": {
+      "title": "Loading form"
+    }
   }
 }

@@ -2,9 +2,10 @@
   <v-app>
     <v-main>
       <form id="form" class="form-renderer" novalidate autocomplete="off" @submit.prevent="onSubmit">
-        <v-overlay v-if="loading" :value="loading" absolute>
-          <v-progress-circular indeterminate :size="64" :width="6"></v-progress-circular>
-        </v-overlay>
+        <div v-if="loading" class="form-renderer__loader">
+          <div class="form-renderer__loader__title">{{ $t('form.loader.title') }}</div>
+          <v-progress-linear color="primary" indeterminate rounded height="8"></v-progress-linear>
+        </div>
         <template v-else>
           <!-- Render title only if the form have a name -->
           <div v-if="form.ui.name" class="form-renderer__title">
@@ -175,7 +176,21 @@ export default {
 }
 .form-renderer {
   overflow-x: hidden;
-  padding-bottom: 6px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  &__loader {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0 auto;
+    align-items: center;
+
+    &__title {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+  }
 
   &__title {
     font-weight: bold;

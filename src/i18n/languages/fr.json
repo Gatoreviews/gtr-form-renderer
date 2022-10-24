@@ -22,5 +22,10 @@
         "placeholder": "Saisir votre code pays"
       }
     }
+  },
+  "form": {
+    "loader": {
+      "title": "Chargement du formulaire"
+    }
   }
 }
