@@ -10,7 +10,7 @@
         :lg="column.columns.lg ? column.columns.lg : null"
         :xl="column.columns.xl ? column.columns.xl : null"
       >
-        <g-grid v-if="column.elements && column.elements.length > 0" :elements="column.elements">
+        <g-grid v-if="column.elements?.length > 0" :elements="column.elements">
           <template slot="field" slot-scope="{ field }">
             <slot v-if="field.type === 'field'" name="field" :field="field"></slot>
           </template>

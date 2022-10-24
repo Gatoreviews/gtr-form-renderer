@@ -91,7 +91,7 @@ export const operators = {
     return value != comparedValue
   },
   contains: (comparedValue, value) => {
-    return comparedValue && comparedValue.includes(value)
+    return comparedValue?.includes(value)
   },
   superior: (comparedValue, value) => {
     return comparedValue > value

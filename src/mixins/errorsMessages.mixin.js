@@ -7,14 +7,12 @@ export const errorsMessages = {
         this.v.fieldsValues[this.field.slug].required === false && errors.push(this.$t('error.required'))
         this.v.fieldsValues[this.field.slug].sameAs === false && errors.push(this.$t('error.required'))
         this.v.fieldsValues[this.field.slug].minLength === false &&
-          this.field.options &&
-          this.field.options.length > 0 &&
+          this.field.options?.length > 0 &&
           errors.push(
             this.$t('error.minLengthArray', { count: this.v.fieldsValues[this.field.slug].$params.minLength.min })
           )
         this.v.fieldsValues[this.field.slug].maxLength === false &&
-          this.field.options &&
-          this.field.options.length > 0 &&
+          this.field.options?.length > 0 &&
           errors.push(
             this.$t('error.maxLengthArray', { count: this.v.fieldsValues[this.field.slug].$params.maxLength.max })
           )

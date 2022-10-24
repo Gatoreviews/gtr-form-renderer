@@ -11,7 +11,7 @@
             {{ form.ui.name }}
           </div>
           <!-- Render grid if the form ui avec elements at root -->
-          <g-grid v-if="form.ui.elements && form.ui.elements.length > 0" :elements="form.ui.elements">
+          <g-grid v-if="form.ui.elements?.length > 0" :elements="form.ui.elements">
             <template #field="{ field }">
               <g-field
                 :form="form"
@@ -25,7 +25,7 @@
           </g-grid>
           <!-- Render stepper if the form ui avec stepper at root -->
           <g-stepper
-            v-if="form.ui.stepper && form.ui.stepper.steps.length > 0"
+            v-if="form.ui.stepper?.steps.length > 0"
             :steps="form.ui.stepper.steps"
             :next-label="form.ui.stepper.next"
             :previous-label="form.ui.stepper.previous"
@@ -33,7 +33,7 @@
             :v="$v"
           >
             <template #step="{ elements }">
-              <g-grid v-if="elements && elements.length > 0" :elements="elements">
+              <g-grid v-if="elements?.length > 0" :elements="elements">
                 <template #field="{ field }">
                   <g-field
                     :form="form"
@@ -131,7 +131,7 @@ export default {
       this.fieldsRules = rules(filteredFields)
     },
     getFilteredFields(key) {
-      if (this.form && this.form.fields.length) {
+      if (this.form?.fields.length) {
         return this.form.fields.filter(field => field[key])
       }
       return []

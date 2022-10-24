@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     onInput() {
-      this.$refs.menu && this.$refs.menu.save(this.model)
+      this.$refs.menu?.save(this.model)
       this.$emit('input', {
         [this.field.slug]: this.model || null,
       })
