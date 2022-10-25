@@ -15,7 +15,15 @@
         flat
       ></v-text-field>
     </template>
-    <v-date-picker v-model="model" :range="field.multiple" scrollable @change="onInput" :first-day-of-week="1" />
+    <v-date-picker
+      v-model="model"
+      :range="field.multiple"
+      scrollable
+      :min="minDate"
+      :max="maxDate"
+      :first-day-of-week="1"
+      @change="onInput"
+    />
   </v-menu>
 </template>
 
@@ -56,6 +64,12 @@ export default {
         return formatedDate(this.model, 'L', this.locale)
       }
       return ''
+    },
+    minDate() {
+      return this.field.rules?.minDate ? this.field.rules.minDate : null
+    },
+    maxDate() {
+      return this.field.rules?.maxDate ? this.field.rules.maxDate : null
     },
   },
   methods: {

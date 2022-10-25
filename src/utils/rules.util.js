@@ -48,6 +48,18 @@ export const rules = fields => {
             maxValue: maxValue(value),
           }
           break
+        case 'minDate':
+          rules.fieldsValues[field.slug] = {
+            ...rules.fieldsValues[field.slug],
+            minValue: minValue(value),
+          }
+          break
+        case 'maxDate':
+          rules.fieldsValues[field.slug] = {
+            ...rules.fieldsValues[field.slug],
+            maxValue: maxValue(value),
+          }
+          break
         case 'email':
           rules.fieldsValues[field.slug] = {
             ...rules.fieldsValues[field.slug],
