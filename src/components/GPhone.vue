@@ -16,12 +16,14 @@
     >
       <template #selection="{ item }">
         <div class="g-phone__country__selection">
-          <img :src="getFlagSrc(item.code)" max-width="24" v-if="getFlagSrc(item.code)" /> +{{ item.prefix }}
+          <img :src="item.src" width="24" />
+          +{{ item.prefix }}
         </div>
       </template>
       <template #item="{ item }">
         <div class="g-phone__country__item">
-          <img :src="getFlagSrc(item.code)" max-width="24" v-if="getFlagSrc(item.code)" /> {{ item.name }}
+          <img :src="item.src" width="24" />
+          {{ item.name }}
         </div>
       </template>
     </v-autocomplete>
@@ -92,13 +94,6 @@ export default {
         })
       }
     },
-    getFlagSrc(countryCode) {
-      try {
-        return require(`@/assets/flags/${countryCode.toLowerCase()}.svg`)
-      } catch {
-        return null
-      }
-    },
     async getUserCountryCode() {
       try {
         const response = await getCountryCode()
@@ -129,7 +124,7 @@ export default {
   &__country {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    max-width: 120px;
+    max-width: 124px;
 
     fieldset {
       border-right: 0 !important;
