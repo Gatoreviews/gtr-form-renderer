@@ -12,6 +12,11 @@ const opts = {
   icons: {
     iconfont: 'mdiSvg',
   },
+  theme: {
+    options: {
+      customProperties: true,
+    },
+  },
 }
 
 export default new Vuetify(opts)
