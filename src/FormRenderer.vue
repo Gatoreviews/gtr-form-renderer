@@ -1,5 +1,12 @@
 <template>
-  <v-app>
+  <v-app
+    :style="{
+      '--v-primary-base': color,
+      '--v-accent-base': color,
+      '--v-error-base': '#ff5252',
+      fontFamily: `${font}, Arial, sans-serif`,
+    }"
+  >
     <v-main>
       <form id="form" class="form-renderer" novalidate autocomplete="off" @submit.prevent="onSubmit">
         <div v-if="loading" class="form-renderer__loader">
@@ -94,6 +101,21 @@ export default {
       required: false,
       default: false,
     },
+    color: {
+      type: String,
+      required: false,
+      default: '#449afd',
+    },
+    dark: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    font: {
+      type: String,
+      required: false,
+      default: 'Poppins',
+    },
   },
   data: () => ({
     loading: false,
@@ -108,6 +130,8 @@ export default {
     this.loading = true
     //Set currrent locale for Vuetify & i18n
     this.initLocale()
+    //Set form customization
+    this.initCustomization()
     //Get form by its UUID
     this.form = await getForm(this.formId, this.locale, this.devMode)
     //Generate default values on init
@@ -118,8 +142,20 @@ export default {
   },
   methods: {
     initLocale() {
+      //Set vuetify locale
       this.$vuetify.lang.current = this.locale
+      //Set i18n locale
       this.$i18n.locale = this.locale
+    },
+    initCustomization() {
+      //Set vuetify dark theme
+      this.$vuetify.theme.dark = this.dark
+
+      //Get Google Font
+      let link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = `https://fonts.googleapis.com/css2?family=${this.font}:wght@400;500;600;700&display=swap`
+      document.head.appendChild(link)
     },
     initFieldsValues() {
       const filteredFields = this.getFilteredFields('defaultValue')
@@ -195,7 +231,7 @@ export default {
   &__title {
     font-weight: bold;
     margin-bottom: 1rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   &__cta {
