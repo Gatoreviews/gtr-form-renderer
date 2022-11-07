@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.1.1...v1.2.0) (2022-11-07)
+
+
+### Features
+
+* **form:** add customization (color, dark, font) ([23b2465](https://github.com/Gatoreviews/gtr-form-renderer/commit/23b2465e61916f686420ca91bf3be89c7fb8d249))
+
 ## [1.1.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.1.0...v1.1.1) (2022-10-24)
 
 
