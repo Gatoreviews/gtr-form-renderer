@@ -5,15 +5,42 @@
     "email": "Veuillez entrer un email valide",
     "url": "Veuillez entrer une URL valide",
     "phone": "Veuillez entrer un numéro de téléphone valide",
-    "minLength": "Ce champ requiert {count} caractères minimum",
-    "maxLength": "Ce champ requiert {count} caractères maximum",
+    "minLength": "Ce champ doit faire au minimum {count} caractères",
+    "maxLength": "Ce champ doit faire au maximum {count} caractères",
     "minLengthArray": "Veuillez choisir {count} options minimum",
     "maxLengthArray": "Veuillez choisir {count} options maximum",
-    "minValue": "La valeur de ce champ ne peut être inférieur à {value}",
-    "maxValue": "La valeur de ce champ ne peut être supérieure à {value}",
-    "notification": {
-      "error": "Une erreur est survenue pendant l'opération, veuillez réessayer plus tard."
+    "minValue": "La valeur de ce champ doit supérieure ou égal à {value}",
+    "maxValue": "La valeur de ce champ doit inférieure ou égal à {value}",
+    "minDate": "Le valeur de ce champ doit être une date ultérieur au {value}.",
+    "maxDate": "Le valeur de ce champ doit être une date antérieur au {value}.",
+    "valueFilledIn": "Valeur renseignée : <strong>{value}</strong> | Valeur renseignée : <strong>{value}</strong> | Valeurs renseignées : <strong>{value}</strong>",
+    "404": {
+      "title": "Formulaire introuvable",
+      "subtitle": "Le formulaire avec l'identifiant <code>{formId}</code> n'existe pas."
+    },
+    "422": {
+      "title": "Champs invalides",
+      "subtitle": "{count} champ est invalide avec l'erreur suivante | {count} champ est invalide avec l'erreur suivante | {count} champs sont invalides avec les erreurs suivantes"
+    },
+    "500": {
+      "title": "Oups... Quelque chose est cassé !",
+      "subtitle": "Une erreur est survenue pendant l'opération, veuillez réessayer plus tard."
     }
+  },
+  "rule": {
+    "email": "Le champ <code>{field}</code> n'est pas un email valide.",
+    "number": "Le champ <code>{field}</code> n'est pas un nombre valide.",
+    "phone": "Le champ <code>{field}</code> n'est pas un numéro de téléphone valide.",
+    "date": "Le champ <code>{field}</code> n'est pas une date valide.",
+    "required": "Le champ <code>{field}</code> est requis.",
+    "minLength": "Le champ <code>{field}</code> doit faire au minimum {rule} caractères.",
+    "maxLength": "Le champ <code>{field}</code> doit faire au maximum {rule} caractères.",
+    "min": "Le champ <code>{field}</code> doit être supérieure ou égal à {rule}.",
+    "max": "Le champ <code>{field}</code> doit être inférieure ou égal à {rule}.",
+    "minDate": "Le champ <code>{field}</code> doit être une date ultérieur au {rule}.",
+    "maxDate": "Le champ <code>{field}</code> doit être une date antérieur au {rule}.",
+    "fileSize": "Le champ <code>{field}</code> doit être un fichier inférieur à {rule}",
+    "unkown": "Le champ <code>{field}</code> a une valeur inconnue : <strong>{value}</strong> | Le champ <code>{field}</code> a une valeur inconnue : <strong>{value}</strong> | Le champ <code>{field}</code> a des valeurs inconnues : <strong>{value}</strong>"
   },
   "field": {
     "phone": {

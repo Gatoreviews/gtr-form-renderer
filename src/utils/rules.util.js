@@ -1,5 +1,6 @@
 import { required, minLength, maxLength, minValue, maxValue, email, url, sameAs } from 'vuelidate/lib/validators'
 import { phone } from '@/validators/phone.validator'
+import { minDate, maxDate } from '@/validators/date.validator'
 
 export const rules = fields => {
   const rules = {
@@ -51,13 +52,13 @@ export const rules = fields => {
         case 'minDate':
           rules.fieldsValues[field.slug] = {
             ...rules.fieldsValues[field.slug],
-            minValue: minValue(value),
+            minDate: minDate(value),
           }
           break
         case 'maxDate':
           rules.fieldsValues[field.slug] = {
             ...rules.fieldsValues[field.slug],
-            maxValue: maxValue(value),
+            maxDate: maxDate(value),
           }
           break
         case 'email':
