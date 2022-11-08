@@ -5,15 +5,42 @@
     "email": "Please enter a valid email",
     "url": "Please enter a valid URL",
     "phone": "Please enter a valid phone number",
-    "minLength": "This field requires {count} characters minimum",
-    "maxLength": "This field requires {count} characters maximum",
+    "minLength": "This field must be at least {count} characters long",
+    "maxLength": "This field must be at most {count} characters long",
     "minLengthArray": "Please select {count} options minimum",
     "maxLengthArray": "Please select {count} options maximum",
-    "minValue": "The field value cannot be less than {value}.",
-    "maxValue": "The field value cannot be more than {value}.",
-    "notification": {
-      "error": "An error occurred during the operation, please try again later."
+    "minValue": "The field value must be greater than or equal to {value}.",
+    "maxValue": "The field value must be smaller than or equal to {value}.",
+    "minDate": "The field value must be a date later than {value}.",
+    "maxDate": "The field value must be a date earlier than {value}.",
+    "valueFilledIn": "Value filled in: <strong>{value}</strong>",
+    "404": {
+      "title": "Form not found",
+      "subtitle": "The form with the identifier <code>{formId}</code> does not exist."
+    },
+    "422": {
+      "title": "Invalid fields",
+      "subtitle": "{count} field is invalid with the following error | {count} field is invalid with the following error | {count} fields are invalid with the following errors"
+    },
+    "500": {
+      "title": "Oops... Something went wrong !",
+      "subtitle": "An error occurred during the operation, please try again later."
     }
+  },
+  "rule": {
+    "email": "The field <code>{field}</code> is not a valid email.",
+    "number": "The field <code>{field}</code> is not a valid number.",
+    "phone": "The field <code>{field}</code> is not a valid phone number.",
+    "date": "The field <code>{field}</code> is not a valid date.",
+    "required": "The field <code>{field}</code> is required.",
+    "minLength": "The field <code>{field}</code> must be at least {rule} characters long.",
+    "maxLength": "The field <code>{field}</code> must be at most {rule} characters long.",
+    "min": "The field <code>{field}</code> must be greater than or equal to {rule}.",
+    "max": "The field <code>{field}</code> must be smaller than or equal to {rule}.",
+    "minDate": "The field <code>{field}</code> must be a date later than {rule}.",
+    "maxDate": "The field <code>{field}</code> must be a date earlier than {rule}.",
+    "fileSize": "The field <code>{field}</code> must be a file smaller than {rule}",
+    "unkown": "The field <code>{field}</code> has unkown value: <strong>{value}</strong> | The field <code>{field}</code> has unkown value: <strong>{value}</strong> | The field <code>{field}</code> has unkown values: <strong>{value}</strong>"
   },
   "field": {
     "phone": {

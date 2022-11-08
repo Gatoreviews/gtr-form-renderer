@@ -4,6 +4,7 @@
       '--v-primary-base': color,
       '--v-accent-base': color,
       '--v-error-base': '#ff5252',
+      '--v-success-base': '#4caf50',
       fontFamily: `${font}, Arial, sans-serif`,
     }"
   >
@@ -13,6 +14,14 @@
           <div class="form-renderer__loader__title">{{ $t('form.loader.title') }}</div>
           <v-progress-linear color="primary" indeterminate rounded height="8"></v-progress-linear>
         </div>
+        <g-message
+          v-else-if="message.enabled"
+          :message="message"
+          :form-id="formId"
+          :form="form"
+          :fields-values="sentValues"
+          :locale="locale"
+        />
         <template v-else>
           <!-- Render title only if the form have a name -->
           <div v-if="form.ui.name" class="form-renderer__title">
@@ -39,6 +48,7 @@
             :previous-label="form.ui.stepper.previous"
             :submit-label="form.ui.submit"
             :v="$v"
+            :sending="sending"
           >
             <template #step="{ elements }">
               <g-grid v-if="elements?.length > 0" :elements="elements">
@@ -57,7 +67,7 @@
           </g-stepper>
           <!-- Render submit button only if we don't have stepper -->
           <div v-if="!form.ui.stepper" class="form-renderer__cta">
-            <v-btn type="submit" rounded color="primary" :loadin="sending" :disabled="sending">
+            <v-btn type="submit" rounded color="primary" :loading="sending" :disabled="sending">
               {{ form.ui.submit }}
             </v-btn>
           </div>
@@ -75,12 +85,14 @@ import { removeNullFromObject } from './utils/object.util'
 import GGrid from './components/GGrid.vue'
 import GStepper from './components/GStepper.vue'
 import GField from './components/GField.vue'
+import GMessage from './components/GMessage.vue'
 
 export default {
   components: {
     GGrid,
     GStepper,
     GField,
+    GMessage,
   },
   name: 'FormRenderer',
   props: {
@@ -120,10 +132,16 @@ export default {
   data: () => ({
     loading: false,
     sending: false,
+    message: {
+      enabled: false,
+      code: 0,
+      details: null,
+    },
     form: null,
     image: null,
     fieldsValues: {},
     fieldsRules: null,
+    sentValues: null,
   }),
   mixins: [validationMixin],
   async created() {
@@ -132,12 +150,17 @@ export default {
     this.initLocale()
     //Set form customization
     this.initCustomization()
-    //Get form by its UUID
-    this.form = await getForm(this.formId, this.locale, this.devMode)
-    //Generate default values on init
-    this.initFieldsValues()
-    //Generate all validation rules on init
-    this.initFieldsRules()
+    try {
+      //Get form by its UUID
+      this.form = await getForm(this.formId, this.locale, this.devMode)
+      //Generate default values on init
+      this.initFieldsValues()
+      //Generate all validation rules on init
+      this.initFieldsRules()
+    } catch (error) {
+      this.$set(this.message, 'enabled', true)
+      this.$set(this.message, 'code', error.status)
+    }
     this.loading = false
   },
   methods: {
@@ -184,9 +207,22 @@ export default {
       this.$v.$touch()
       if (!this.$v.$invalid) {
         this.sending = true
-        await this.$recaptchaLoaded()
-        const token = await this.$recaptcha('leadSave')
-        await postForm(this.formId, this.storeId, this.locale, this.fieldsValues, token, this.devMode)
+        this.sentValues = JSON.parse(JSON.stringify(this.fieldsValues))
+        try {
+          await this.$recaptchaLoaded()
+          const token = await this.$recaptcha('leadSave')
+          await postForm(this.formId, this.storeId, this.locale, this.fieldsValues, token, this.devMode)
+          this.$set(this.message, 'enabled', true)
+          this.$set(this.message, 'code', 200)
+          this.$set(this.message, 'details', {
+            title: this.form.ui.success.title,
+            message: this.form.ui.success.message,
+          })
+        } catch (error) {
+          this.$set(this.message, 'enabled', true)
+          this.$set(this.message, 'code', error.status)
+          this.$set(this.message, 'details', error.data)
+        }
         this.sending = false
       }
     },
@@ -231,7 +267,7 @@ export default {
   &__title {
     font-weight: bold;
     margin-bottom: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 
   &__cta {

@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     onInput() {
-      const phoneNumber = parsePhoneNumberFromString(this.model, this.countryCode)
+      const phoneNumber = this.model && parsePhoneNumberFromString(this.model, this.countryCode)
       // phoneNumber is defined with 2+ caracters
       if (phoneNumber) {
         // If phone number is valid, model is set to national format

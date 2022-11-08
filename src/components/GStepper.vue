@@ -24,7 +24,16 @@
           <v-btn v-if="index < steps.length - 1" color="primary" outlined rounded @click="nextStep">
             {{ nextLabel }}
           </v-btn>
-          <v-btn v-if="index === steps.length - 1" color="primary" rounded type="submit"> {{ submitLabel }} </v-btn>
+          <v-btn
+            v-if="index === steps.length - 1"
+            color="primary"
+            rounded
+            type="submit"
+            :loading="sending"
+            :disabled="sending"
+          >
+            {{ submitLabel }}
+          </v-btn>
         </div>
       </v-stepper-content>
     </v-stepper-items>
@@ -57,6 +66,11 @@ export default {
       type: Object,
       required: false,
       default: () => {},
+    },
+    sending: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   data: () => ({
