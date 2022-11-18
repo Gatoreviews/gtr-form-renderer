@@ -38,10 +38,6 @@ export default {
       type: Object,
       required: true,
     },
-    locale: {
-      type: String,
-      required: true,
-    },
     v: {
       type: Object,
       required: false,
@@ -53,6 +49,7 @@ export default {
     menu: false,
     model: null,
   }),
+  inject: ['locale'],
   created() {
     this.model = this.field.defaultValue || null
   },

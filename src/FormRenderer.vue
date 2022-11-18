@@ -14,14 +14,7 @@
           <div class="form-renderer__loader__title">{{ $t('form.loader.title') }}</div>
           <v-progress-linear color="primary" indeterminate rounded height="8"></v-progress-linear>
         </div>
-        <g-message
-          v-else-if="message.enabled"
-          :message="message"
-          :form-id="formId"
-          :form="form"
-          :fields-values="sentValues"
-          :locale="locale"
-        />
+        <g-message v-else-if="message.enabled" :message="message" :form="form" :fields-values="sentValues" />
         <template v-else>
           <!-- Render title only if the form have a name -->
           <div v-if="form.ui.name" class="form-renderer__title">
@@ -30,14 +23,7 @@
           <!-- Render grid if the form ui avec elements at root -->
           <g-grid v-if="form.ui.elements?.length > 0" :elements="form.ui.elements">
             <template #field="{ field }">
-              <g-field
-                :form="form"
-                :field="field"
-                :fields-values="fieldsValues"
-                :locale="locale"
-                :v="$v"
-                @save="saveField"
-              />
+              <g-field :form="form" :field="field" :fields-values="fieldsValues" :v="$v" @save="saveField" />
             </template>
           </g-grid>
           <!-- Render stepper if the form ui avec stepper at root -->
@@ -53,14 +39,7 @@
             <template #step="{ elements }">
               <g-grid v-if="elements?.length > 0" :elements="elements">
                 <template #field="{ field }">
-                  <g-field
-                    :form="form"
-                    :field="field"
-                    :fields-values="fieldsValues"
-                    :locale="locale"
-                    :v="$v"
-                    @save="saveField"
-                  />
+                  <g-field :form="form" :field="field" :fields-values="fieldsValues" :v="$v" @save="saveField" />
                 </template>
               </g-grid>
             </template>
@@ -144,6 +123,13 @@ export default {
     sentValues: null,
   }),
   mixins: [validationMixin],
+  provide() {
+    return {
+      formId: this.formId,
+      devMode: this.devMode,
+      locale: this.locale,
+    }
+  },
   async created() {
     this.loading = true
     //Set currrent locale for Vuetify & i18n

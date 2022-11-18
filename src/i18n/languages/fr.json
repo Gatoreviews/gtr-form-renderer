@@ -14,6 +14,10 @@
     "minDate": "Le valeur de ce champ doit être une date ultérieur au {value}.",
     "maxDate": "Le valeur de ce champ doit être une date antérieur au {value}.",
     "valueFilledIn": "Valeur renseignée : <strong>{value}</strong> | Valeur renseignée : <strong>{value}</strong> | Valeurs renseignées : <strong>{value}</strong>",
+    "fileFormat": "Le format de fichier {format} n'est pas autorisé parmi les formats {allowedFormats}",
+    "fileSize": "Le fichier de {size} dépasse la taille maximale autorisée de {maxSize}",
+    "fileEmpty": "Le fichier ne peut pas être vide",
+    "fileNotUploaded": "Le fichier ne peut pas être vide et doit être téléchargé",
     "404": {
       "title": "Formulaire introuvable",
       "subtitle": "Le formulaire avec l'identifiant <code>{formId}</code> n'existe pas."
@@ -48,6 +52,14 @@
         "label": "Code pays",
         "placeholder": "Saisir votre code pays"
       }
+    },
+    "file": {
+      "drop": "Déposer le fichier ici",
+      "chooseOrDrag": "Choissir un fichier ou le faire glisser ici",
+      "fileFormats": "Formats de fichiers supportés: {formats}",
+      "fileSize": "Taille maximale du fichier: {size}",
+      "clear": "Effacer",
+      "upload": "Télécharger"
     }
   },
   "form": {

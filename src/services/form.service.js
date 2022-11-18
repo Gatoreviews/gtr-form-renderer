@@ -1,7 +1,9 @@
 import { sendGetRequest, sendPostRequest } from '@/services/api.service'
 
-const FORM_API_URL = devMode => (devMode ? 'https://api-p.gtrsuite.io/forms/' : 'https://api.gtrsuite.io/forms/')
-const LEADS_API_URL = devMode => (devMode ? 'https://api-p.gtrsuite.io/leads/' : 'https://api.gtrsuite.io/leads/')
+const API_HOST = devMode => (devMode ? 'https://api-p.gtrsuite.io' : 'https://api.gtrsuite.io')
+const FORM_API_URL = devMode => `${API_HOST(devMode)}/forms/`
+const LEADS_API_URL = devMode => `${API_HOST(devMode)}/leads/`
+const FILE_API_URL = devMode => `${API_HOST(devMode)}/files/`
 
 export const getForm = async (formId, locale, devMode) => {
   return await sendGetRequest(`${FORM_API_URL(devMode)}${formId}`, {
@@ -22,6 +24,13 @@ export const postForm = async (formId, storeId, locale, fieldsValues, recaptcha,
       headers: { recaptcha },
     }
   )
+}
+
+export const postFile = async (formId, file, recaptcha, devMode) => {
+  await new Promise(resolve => setTimeout(resolve, 2000))
+  return await sendPostRequest(`${FILE_API_URL(devMode)}`, file, {
+    headers: { recaptcha, formId, 'Content-Type': 'multipart/form-data' },
+  })
 }
 
 export const getCountryCode = async () => {

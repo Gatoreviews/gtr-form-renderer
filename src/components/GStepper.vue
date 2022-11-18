@@ -2,7 +2,12 @@
   <v-stepper v-model="currentStep" class="g-stepper" :elevation="0" alt-labels>
     <v-stepper-header class="g-stepper__header">
       <template v-for="(step, index) in steps">
-        <v-stepper-step :key="`step-${index}`" :complete="currentStep > index + 1" :step="index + 1">
+        <v-stepper-step
+          class="g-stepper__header__step"
+          :key="`step-${index}`"
+          :complete="currentStep > index + 1"
+          :step="index + 1"
+        >
           {{ step.title }}
         </v-stepper-step>
 
@@ -86,7 +91,7 @@ export default {
     },
     nextStep() {
       this.v.$touch()
-      const isInvalid = this.stepsRules[this.currentStep - 1].some(field => this.v.fieldsValues[field].$invalid)
+      const isInvalid = this.stepsRules[this.currentStep - 1].some(field => this.v.fieldsValues[field]?.$invalid)
       if (!isInvalid) {
         this.currentStep++
         this.v.$reset()
@@ -100,10 +105,16 @@ export default {
 .g-stepper {
   &__header {
     box-shadow: none;
+
+    &__step {
+      padding: 1.5rem 1rem;
+    }
   }
 
   &__items {
     &__content {
+      padding: 0 0 1rem 0;
+
       &__actions {
         display: flex;
         padding-bottom: 6px;

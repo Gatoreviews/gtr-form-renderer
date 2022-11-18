@@ -9,7 +9,6 @@
     <g-date-picker
       v-if="formField(field.slug).type === 'datepicker' && condition(formField(field.slug).condition)"
       :field="formField(field.slug)"
-      :locale="locale"
       :v="v"
       @input="saveField"
     />
@@ -40,7 +39,12 @@
     <g-phone
       v-if="formField(field.slug).type === 'tel' && condition(formField(field.slug).condition)"
       :field="formField(field.slug)"
-      :locale="locale"
+      :v="v"
+      @input="saveField"
+    />
+    <g-file
+      v-if="formField(field.slug).type === 'file' && condition(formField(field.slug).condition)"
+      :field="formField(field.slug)"
       :v="v"
       @input="saveField"
     />
@@ -57,6 +61,7 @@ import GRadio from '@/components/GRadio.vue'
 import GCheckbox from '@/components/GCheckbox.vue'
 import GTextarea from '@/components/GTextarea.vue'
 import GPhone from '@/components/GPhone.vue'
+import GFile from '@/components/GFile.vue'
 
 export default {
   name: 'GField',
@@ -68,6 +73,7 @@ export default {
     GCheckbox,
     GTextarea,
     GPhone,
+    GFile,
   },
   props: {
     field: {
@@ -80,10 +86,6 @@ export default {
     },
     fieldsValues: {
       type: Object,
-      required: true,
-    },
-    locale: {
-      type: String,
       required: true,
     },
     v: {

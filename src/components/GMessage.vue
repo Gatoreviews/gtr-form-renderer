@@ -100,15 +100,6 @@ export default {
       type: Object,
       required: true,
     },
-    locale: {
-      type: String,
-      required: true,
-    },
-    formId: {
-      type: String,
-      required: false,
-      default: '',
-    },
     form: {
       type: Object,
       required: false,
@@ -129,6 +120,7 @@ export default {
       mdiCheckboxMarkedCircleOutline,
     },
   }),
+  inject: ['formId', 'locale'],
   methods: {
     errorsDetails(errors) {
       const errorsDetails = errors.map(error => {
