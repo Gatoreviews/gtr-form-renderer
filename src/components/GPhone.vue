@@ -58,10 +58,6 @@ export default {
       type: Object,
       required: true,
     },
-    locale: {
-      type: String,
-      required: true,
-    },
     v: {
       type: Object,
       required: false,
@@ -69,6 +65,7 @@ export default {
     },
   },
   mixins: [errorsMessages],
+  inject: ['locale'],
   data: () => ({
     model: null,
     countryCode: '',

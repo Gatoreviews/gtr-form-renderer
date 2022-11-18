@@ -13,7 +13,11 @@
     "maxValue": "The field value must be smaller than or equal to {value}.",
     "minDate": "The field value must be a date later than {value}.",
     "maxDate": "The field value must be a date earlier than {value}.",
-    "valueFilledIn": "Value filled in: <strong>{value}</strong>",
+    "valueFilledIn": "Value filled in: <strong>{value}</strong> | Value filled in: <strong>{value}</strong> | Values filled in: <strong>{value}</strong>",
+    "fileFormat": "{format} file format is not allowed among {allowedFormats} formats",
+    "fileSize": "The {size} file exceeds the maximum allowed size of {maxSize}",
+    "fileEmpty": "The file cannot be empty",
+    "fileNotUploaded": "The file cannot be empty and must be uploaded",
     "404": {
       "title": "Form not found",
       "subtitle": "The form with the identifier <code>{formId}</code> does not exist."
@@ -48,6 +52,14 @@
         "label": "Country code",
         "placeholder": "Enter your country code"
       }
+    },
+    "file": {
+      "drop": "Drag it here",
+      "chooseOrDrag": "Choose a file or drag it here",
+      "fileFormats": "Supported file formats: {formats}",
+      "fileSize": "Maximum upload file size: {size}",
+      "clear": "Clear",
+      "upload": "Upload"
     }
   },
   "form": {
