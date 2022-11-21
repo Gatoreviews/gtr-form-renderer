@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.2.1...v1.3.0) (2022-11-21)
+
+
+### Features
+
+* handle submission and server errors ([cee2dd5](https://github.com/Gatoreviews/gtr-form-renderer/commit/cee2dd5c30c816989a82df0963c69f1b78750947))
+
 ## [1.2.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.2.0...v1.2.1) (2022-11-21)
 
 
