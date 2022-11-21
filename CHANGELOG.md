@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.2.0...v1.2.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* **phone:** add new countries ([d1f8a8d](https://github.com/Gatoreviews/gtr-form-renderer/commit/d1f8a8de16dd5a7ab9b88227235eda26b6de51bf))
+
 # [1.2.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.1.1...v1.2.0) (2022-11-07)
 
 
