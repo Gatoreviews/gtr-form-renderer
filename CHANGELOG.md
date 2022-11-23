@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.3.0...v1.4.0) (2022-11-23)
+
+
+### Features
+
+* add file field ([8b99206](https://github.com/Gatoreviews/gtr-form-renderer/commit/8b99206dc73ccb3094a46dccf3f8b7ba69986f0f))
+
 # [1.3.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.2.1...v1.3.0) (2022-11-21)
 
 
