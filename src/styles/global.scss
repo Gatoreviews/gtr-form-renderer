@@ -6,3 +6,10 @@
 .v-btn {
   text-transform: none !important;
 }
+
+.v-input {
+  &--selection-controls {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
