@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.0...v1.4.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* **style:** remove padding and margin for input controls ([c24c6ac](https://github.com/Gatoreviews/gtr-form-renderer/commit/c24c6ac9c5c8cbde9793c66da08d31a33c30581e))
+
 # [1.4.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.3.0...v1.4.0) (2022-11-23)
 
 
