@@ -39,7 +39,13 @@
       </div>
       <div class="g-file__zone__actions">
         <v-btn small text :disabled="!file || uploading" @click.stop="resetFile"> {{ $t('field.file.clear') }} </v-btn>
-        <v-btn small color="primary" :disabled="!isValid || uploading" :loading="uploading" @click.stop="onUpload">
+        <v-btn
+          small
+          color="primary"
+          :disabled="!isValid || uploading || response?.statusCode === 201"
+          :loading="uploading"
+          @click.stop="onUpload"
+        >
           {{ $t('field.file.upload') }}
         </v-btn>
       </div>

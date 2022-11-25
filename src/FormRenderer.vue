@@ -21,14 +21,14 @@
             {{ form.ui.name }}
           </div>
           <!-- Render grid if the form ui avec elements at root -->
-          <g-grid v-if="form.ui.elements?.length > 0" :elements="form.ui.elements">
+          <g-grid v-if="formHasElements" :elements="form.ui.elements">
             <template #field="{ field }">
               <g-field :form="form" :field="field" :fields-values="fieldsValues" :v="$v" @save="saveField" />
             </template>
           </g-grid>
           <!-- Render stepper if the form ui avec stepper at root -->
           <g-stepper
-            v-if="form.ui.stepper?.steps.length > 0"
+            v-if="formHasStepper"
             :steps="form.ui.stepper.steps"
             :next-label="form.ui.stepper.next"
             :previous-label="form.ui.stepper.previous"
@@ -45,7 +45,7 @@
             </template>
           </g-stepper>
           <!-- Render submit button only if we don't have stepper -->
-          <div v-if="!form.ui.stepper" class="form-renderer__cta">
+          <div v-else-if="!formHasStepper" class="form-renderer__cta">
             <v-btn type="submit" rounded color="primary" :loading="sending" :disabled="sending">
               {{ form.ui.submit }}
             </v-btn>
@@ -148,6 +148,14 @@ export default {
       this.$set(this.message, 'code', error.status)
     }
     this.loading = false
+  },
+  computed: {
+    formHasElements() {
+      return this.form.ui.elements?.length > 0
+    },
+    formHasStepper() {
+      return this.form.ui.stepper?.steps.length > 0
+    },
   },
   methods: {
     initLocale() {

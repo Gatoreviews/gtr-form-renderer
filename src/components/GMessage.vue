@@ -38,7 +38,7 @@
                 "
               />
             </div>
-            <div v-if="err.unknownValues && err.unknownValues.length && err.unknownValues[0] !== null">
+            <div v-if="err.unknownValues && err.unknownValues.length">
               <div
                 v-html="
                   $tc(`rule.unkown`, err.unknownValues.length, {
@@ -48,7 +48,10 @@
                 "
               />
             </div>
-            <div class="g-message__details__field__rules__value" v-if="err.field.value">
+            <div
+              class="g-message__details__field__rules__value"
+              v-if="err.field.value && !err.rules.hasOwnProperty('invalidFile')"
+            >
               <v-icon size="20">{{ icons.mdiArrowRightBoldOutline }}</v-icon>
               <span
                 v-if="Array.isArray(err.field.value)"

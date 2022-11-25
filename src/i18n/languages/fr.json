@@ -43,7 +43,7 @@
     "max": "Le champ <code>{field}</code> doit être inférieure ou égal à {rule}.",
     "minDate": "Le champ <code>{field}</code> doit être une date ultérieur au {rule}.",
     "maxDate": "Le champ <code>{field}</code> doit être une date antérieur au {rule}.",
-    "fileSize": "Le champ <code>{field}</code> doit être un fichier inférieur à {rule}",
+    "invalidFile": "Le fichier <code>{field}</code> est invalide.",
     "unkown": "Le champ <code>{field}</code> a une valeur inconnue : <strong>{value}</strong> | Le champ <code>{field}</code> a une valeur inconnue : <strong>{value}</strong> | Le champ <code>{field}</code> a des valeurs inconnues : <strong>{value}</strong>"
   },
   "field": {

@@ -43,7 +43,7 @@
     "max": "The field <code>{field}</code> must be smaller than or equal to {rule}.",
     "minDate": "The field <code>{field}</code> must be a date later than {rule}.",
     "maxDate": "The field <code>{field}</code> must be a date earlier than {rule}.",
-    "fileSize": "The field <code>{field}</code> must be a file smaller than {rule}",
+    "invalidFile": "The <code>{field}</code> file is invalid.",
     "unkown": "The field <code>{field}</code> has unkown value: <strong>{value}</strong> | The field <code>{field}</code> has unkown value: <strong>{value}</strong> | The field <code>{field}</code> has unkown values: <strong>{value}</strong>"
   },
   "field": {
