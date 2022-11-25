@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.1...v1.4.2) (2022-11-25)
+
+
+### Bug Fixes
+
+* **file:** handle form file error ([6352ea6](https://github.com/Gatoreviews/gtr-form-renderer/commit/6352ea67866287b4adc14dc223ed3a8d9c5fe459))
+
 ## [1.4.1](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.0...v1.4.1) (2022-11-24)
 
 
