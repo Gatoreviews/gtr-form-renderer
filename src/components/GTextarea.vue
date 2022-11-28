@@ -5,7 +5,9 @@
     :placeholder="field.placeholder"
     :type="field.type"
     :name="field.slug"
+    :hint="field.helper"
     :error-messages="errorMessages"
+    persistent-hint
     no-resize
     auto-grow
     outlined

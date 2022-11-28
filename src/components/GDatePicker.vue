@@ -6,7 +6,9 @@
         :label="field.label"
         :placeholder="field.placeholder"
         :name="field.name"
+        :hint="field.helper"
         :error-messages="errorMessages"
+        persistent-hint
         readonly
         v-bind="attrs"
         v-on="on"
