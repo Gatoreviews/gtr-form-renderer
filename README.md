@@ -3,7 +3,7 @@
 ## Overview
 
 GTR Form Renderer is a project specifically designed to build compatible forms for all contexts and environments, whether they are GTRSuite specific or directly included on a client website.
-Until now all forms were managed manually one by one and leads stored in different places. With GTR Form Renderer all forms are now centralized in the GTR Suite ProfileHub.
+Until now all forms were managed manually one by one and leads stored in different places. With GTR Form Renderer all forms are now centralized in the GTR Suite Platform.
 
 Here are the main features of this project:
 
@@ -139,9 +139,9 @@ Root `label` parameter will be used for the name of the drag & drop area.
 slug_name: String //UUID format
 ```
 
-`fileExtensions` rule will restrict file upload based on its extension.
+`fileExtensions` rule will restrict file upload based on its extension (JPEG, JPG, PNG, PDF and GIF by default).
 
-`fileSize` rule will restrict file upload based on its size.
+`fileSize` rule will restrict file upload based on its size (10485760 bytes by default or 10MB).
 
 ### Phone
 
@@ -278,7 +278,7 @@ slug_name: Number //International phone number
 
 This component is a wrapper for all fields.
 
-It will display the correct field depending of its type or conditionnal display.
+It will display the correct field depending of its type or conditional display.
 
 ### Grid
 
@@ -294,7 +294,7 @@ It's compatible with `Grid` component.
 
 ### Message
 
-This component will displau error or success messages for all API request (404, 500, 200, 422, etc...)
+This component will display error or success messages for all API request (404, 500, 200, 422, etc...)
 
 ## Validation
 
@@ -317,7 +317,7 @@ All fields can have validation rules, some rules depend of its type.
 
 ## Conditionnal display
 
-All can have a conditionnal display rule.
+All can have a conditional display rule.
 
 | Name            | Description                                                           |
 | --------------- | --------------------------------------------------------------------- |

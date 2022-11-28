@@ -7,7 +7,9 @@
     :label="field.label"
     :placeholder="field.placeholder"
     :multiple="field.multiple"
+    :hint="field.helper"
     :error-messages="errorMessages"
+    persistent-hint
     outlined
     solo
     flat
