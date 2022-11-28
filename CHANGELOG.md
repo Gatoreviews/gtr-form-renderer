@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.3...v1.5.0) (2022-11-28)
+
+
+### Bug Fixes
+
+* add missing helper ([bae8e9e](https://github.com/Gatoreviews/gtr-form-renderer/commit/bae8e9e2132ce0f41efc87042e4c433e83f6aca7))
+
+
+### Features
+
+* update readme ([a4c4429](https://github.com/Gatoreviews/gtr-form-renderer/commit/a4c4429906d0bde0d9ecabfdd2e110afe91af48e))
+
 ## [1.4.3](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.2...v1.4.3) (2022-11-28)
 
 
