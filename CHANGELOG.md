@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.2...v1.4.3) (2022-11-28)
+
+
+### Bug Fixes
+
+* **datepicker:** allow array for date validator ([643c898](https://github.com/Gatoreviews/gtr-form-renderer/commit/643c898757cdadf23991df49a06346e7a28788f0))
+
 ## [1.4.2](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.1...v1.4.2) (2022-11-25)
 
 
