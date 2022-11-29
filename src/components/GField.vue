@@ -48,6 +48,12 @@
       :v="v"
       @input="saveField"
     />
+    <g-country
+      v-if="formField(field.slug).type === 'country' && condition(formField(field.slug).condition)"
+      :field="formField(field.slug)"
+      :v="v"
+      @input="saveField"
+    />
   </div>
 </template>
 
@@ -62,6 +68,7 @@ import GCheckbox from '@/components/GCheckbox.vue'
 import GTextarea from '@/components/GTextarea.vue'
 import GPhone from '@/components/GPhone.vue'
 import GFile from '@/components/GFile.vue'
+import GCountry from '@/components/GCountry.vue'
 
 export default {
   name: 'GField',
@@ -74,6 +81,7 @@ export default {
     GTextarea,
     GPhone,
     GFile,
+    GCountry,
   },
   props: {
     field: {
