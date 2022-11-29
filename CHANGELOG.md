@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.5.0...v1.6.0) (2022-11-29)
+
+
+### Features
+
+* **fields:** add country field ([dacbf04](https://github.com/Gatoreviews/gtr-form-renderer/commit/dacbf046a8c27f7864ee47dd4075d5e9e4d23c3c))
+* **fields:** add zipcode field ([b45d551](https://github.com/Gatoreviews/gtr-form-renderer/commit/b45d55129486800a3e7d211f3c5e3bb8d42de9b9))
+
 # [1.5.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.4.3...v1.5.0) (2022-11-28)
 
 
