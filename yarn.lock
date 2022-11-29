@@ -7910,6 +7910,11 @@ portfinder@^1.0.26:
     debug "^3.2.7"
     mkdirp "^0.5.6"
 
+postcode-validator@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/postcode-validator/-/postcode-validator-3.7.0.tgz#ea180b860e55adba839fd7f453464b99fc116ecc"
+  integrity sha512-pl697wPxQ8kb3S0qoIHdNsqPjMY3ieKQtR6+dp0o+NOlM6ImzDpyKSdlXgGzzjoUElDUdXWezFjGGd9yITM+Xg==
+
 postcss-calc@^8.2.3:
   version "8.2.4"
   resolved "https://registry.npmmirror.com/postcss-calc/-/postcss-calc-8.2.4.tgz#77b9c29bfcbe8a07ff6693dc87050828889739a5"

@@ -55,6 +55,10 @@ export const errorsMessages = {
 
         //Phone
         this.v.fieldsValues[this.field.slug].phone === false && errors.push(this.$t('error.phone'))
+
+        //ZipCode
+        this.v.fieldsValues[this.field.slug].zipCode === false &&
+          errors.push(this.$t('error.zipCode', { value: this.v.fieldsValues[this.field.slug].$params.zipCode.code }))
       }
       return errors
     },

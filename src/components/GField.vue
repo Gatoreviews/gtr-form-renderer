@@ -54,6 +54,12 @@
       :v="v"
       @input="saveField"
     />
+    <g-zip-code
+      v-if="formField(field.slug).type === 'zipcode' && condition(formField(field.slug).condition)"
+      :field="formField(field.slug)"
+      :v="v"
+      @input="saveField"
+    />
   </div>
 </template>
 
@@ -69,6 +75,7 @@ import GTextarea from '@/components/GTextarea.vue'
 import GPhone from '@/components/GPhone.vue'
 import GFile from '@/components/GFile.vue'
 import GCountry from '@/components/GCountry.vue'
+import GZipCode from '@/components/GZipCode.vue'
 
 export default {
   name: 'GField',
@@ -82,6 +89,7 @@ export default {
     GPhone,
     GFile,
     GCountry,
+    GZipCode,
   },
   props: {
     field: {

@@ -9,15 +9,16 @@
     "maxLength": "Ce champ doit faire au maximum {count} caractères",
     "minLengthArray": "Veuillez choisir {count} options minimum",
     "maxLengthArray": "Veuillez choisir {count} options maximum",
-    "minValue": "La valeur de ce champ doit supérieure ou égal à {value}",
-    "maxValue": "La valeur de ce champ doit inférieure ou égal à {value}",
-    "minDate": "Le valeur de ce champ doit être une date ultérieur au {value}.",
-    "maxDate": "Le valeur de ce champ doit être une date antérieur au {value}.",
+    "minValue": "Ce champ doit être supérieure ou égal à {value}",
+    "maxValue": "Ce champ doit être inférieure ou égal à {value}",
+    "minDate": "Ce champ doit être une date ultérieur au {value}.",
+    "maxDate": "Ce champ doit être une date antérieur au {value}.",
     "valueFilledIn": "Valeur renseignée : <strong>{value}</strong> | Valeur renseignée : <strong>{value}</strong> | Valeurs renseignées : <strong>{value}</strong>",
     "fileFormat": "Le format de fichier {format} n'est pas autorisé parmi les formats {allowedFormats}",
     "fileSize": "Le fichier de {size} dépasse la taille maximale autorisée de {maxSize}",
     "fileEmpty": "Le fichier ne peut pas être vide",
     "fileNotUploaded": "Le fichier ne peut pas être vide et doit être téléchargé",
+    "zipCode": "Veuillez entrer un code postal valide ({value})",
     "404": {
       "title": "Formulaire introuvable",
       "subtitle": "Le formulaire avec l'identifiant <code>{formId}</code> n'existe pas."
@@ -45,6 +46,7 @@
     "maxDate": "Le champ <code>{field}</code> doit être une date antérieur au {rule}.",
     "country": "Le champ <code>{field}</code> doit être un code pays en 2 lettres.",
     "countries": "Le champ <code>{field}</code> doit faire partie de la liste {rule}.",
+    "zipcodeCountry": "Le champ <code>{field}</code> n'est pas un code postal valide ({rule}).",
     "invalidFile": "Le fichier <code>{field}</code> est invalide.",
     "unkown": "Le champ <code>{field}</code> a une valeur inconnue : <strong>{value}</strong> | Le champ <code>{field}</code> a une valeur inconnue : <strong>{value}</strong> | Le champ <code>{field}</code> a des valeurs inconnues : <strong>{value}</strong>"
   },

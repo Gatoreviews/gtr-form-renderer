@@ -9,15 +9,16 @@
     "maxLength": "This field must be at most {count} characters long",
     "minLengthArray": "Please select {count} options minimum",
     "maxLengthArray": "Please select {count} options maximum",
-    "minValue": "The field value must be greater than or equal to {value}.",
-    "maxValue": "The field value must be smaller than or equal to {value}.",
-    "minDate": "The field value must be a date later than {value}.",
-    "maxDate": "The field value must be a date earlier than {value}.",
+    "minValue": "This field must be greater than or equal to {value}.",
+    "maxValue": "This field must be smaller than or equal to {value}.",
+    "minDate": "This field must be a date later than {value}.",
+    "maxDate": "This field must be a date earlier than {value}.",
     "valueFilledIn": "Value filled in: <strong>{value}</strong> | Value filled in: <strong>{value}</strong> | Values filled in: <strong>{value}</strong>",
     "fileFormat": "{format} file format is not allowed among {allowedFormats} formats",
     "fileSize": "The {size} file exceeds the maximum allowed size of {maxSize}",
     "fileEmpty": "The file cannot be empty",
     "fileNotUploaded": "The file cannot be empty and must be uploaded",
+    "zipCode": "Please enter a valid zip code ({value})",
     "404": {
       "title": "Form not found",
       "subtitle": "The form with the identifier <code>{formId}</code> does not exist."
@@ -45,6 +46,7 @@
     "maxDate": "The field <code>{field}</code> must be a date earlier than {rule}.",
     "country": "The field <code>{field}</code> must be a 2-letter country code.",
     "countries": "The field <code>{field}</code> must be part of the {rule} list.",
+    "zipcodeCountry": "The field <code>{field}</code> is not a valid zip code ({rule}).",
     "invalidFile": "The <code>{field}</code> file is invalid.",
     "unkown": "The field <code>{field}</code> has unkown value: <strong>{value}</strong> | The field <code>{field}</code> has unkown value: <strong>{value}</strong> | The field <code>{field}</code> has unkown values: <strong>{value}</strong>"
   },
