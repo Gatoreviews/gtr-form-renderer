@@ -1,5 +1,6 @@
 import { required, minLength, maxLength, minValue, maxValue, email, url, sameAs } from 'vuelidate/lib/validators'
 import { phone } from '@/validators/phone.validator'
+import { zipCode } from '@/validators/zipcode.validator'
 import { minDate, maxDate } from '@/validators/date.validator'
 
 export const rules = fields => {
@@ -77,6 +78,12 @@ export const rules = fields => {
           rules.fieldsValues[field.slug] = {
             ...rules.fieldsValues[field.slug],
             phone,
+          }
+          break
+        case 'zipcodeCountry':
+          rules.fieldsValues[field.slug] = {
+            ...rules.fieldsValues[field.slug],
+            zipCode: zipCode(value),
           }
           break
       }
