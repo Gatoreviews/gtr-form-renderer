@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.7.6...v1.8.0) (2022-12-08)
+
+
+### Features
+
+* switch private API to public API ([9f7d5e6](https://github.com/Gatoreviews/gtr-form-renderer/commit/9f7d5e6269deadb789a1a340a0f9e4755a2989b3))
+
 ## [1.7.6](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.7.5...v1.7.6) (2022-12-08)
 
 
