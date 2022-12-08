@@ -1,3 +1,10 @@
+## [1.7.5](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.7.4...v1.7.5) (2022-12-08)
+
+
+### Bug Fixes
+
+* update semantic release to 1.1.3 ([5f32d83](https://github.com/Gatoreviews/gtr-form-renderer/commit/5f32d835c756dfbcc0809e18e5c07edc661f5f0e))
+
 ## [1.7.4](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.7.3...v1.7.4) (2022-12-08)
 
 
