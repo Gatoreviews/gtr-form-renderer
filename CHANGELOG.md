@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.6.0...v1.7.0) (2022-12-08)
+
+
+### Features
+
+* public release ([388ab6c](https://github.com/Gatoreviews/gtr-form-renderer/commit/388ab6cb0437034e9bf95b33284db1931d3cd3f6))
+
 # [1.6.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.5.0...v1.6.0) (2022-11-29)
 
 
