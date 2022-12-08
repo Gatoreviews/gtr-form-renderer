@@ -1,3 +1,10 @@
+## [1.7.4](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.7.3...v1.7.4) (2022-12-08)
+
+
+### Bug Fixes
+
+* update vuejs to 2.7.14 ([7ced9ed](https://github.com/Gatoreviews/gtr-form-renderer/commit/7ced9ede107468d36c8b7b1c4d7f605da883b41b))
+
 ## [1.7.3](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.7.2...v1.7.3) (2022-12-08)
 
 
