@@ -1,6 +1,6 @@
 import { sendGetRequest, sendPostRequest } from '@/services/api.service'
 
-const API_HOST = devMode => (devMode ? 'https://api-p.gtrsuite.io' : 'https://api.gtrsuite.io')
+const API_HOST = devMode => (devMode ? 'https://api-p.gtrsuite.io/public' : 'https://api.gtrsuite.io/public')
 const FORM_API_URL = devMode => `${API_HOST(devMode)}/forms/`
 const LEADS_API_URL = devMode => `${API_HOST(devMode)}/leads/`
 const FILE_API_URL = devMode => `${API_HOST(devMode)}/files/`
