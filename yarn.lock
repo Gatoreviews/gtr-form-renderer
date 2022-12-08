@@ -1021,10 +1021,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@gatoreviews/node-semantic-release@^1.1.3":
-  version "1.1.3"
-  resolved "https://npm.pkg.github.com/download/@Gatoreviews/node-semantic-release/1.1.3/8a7e2b40fbfdc5898c02005e5d4114223ca6f98a#8a7e2b40fbfdc5898c02005e5d4114223ca6f98a"
-  integrity sha512-8LYOTBEN6IB4CQH7acIrcC9oBlKREVZCyTXH6LWTZZmJtBmsV6Lwrj3tWyScXO37S7+NFfl16iQJI5HnDRr+yg==
+"@gatoreviews/node-semantic-release@^1.2.0":
+  version "1.2.0"
+  resolved "https://npm.pkg.github.com/download/@Gatoreviews/node-semantic-release/1.2.0/2b7047538b08f4f21c22eeba70497ee2f6243ec3#2b7047538b08f4f21c22eeba70497ee2f6243ec3"
+  integrity sha512-D2HVrpcZKgNhwKM7nWA/kOEIFaA8UCZmPDIDdsGZF2gkmlP3xFrkCv/0n6eYmgB895cidzdE4api/t2DyXRKCQ==
   dependencies:
     "@octokit/rest" "^16.36.0"
     "@semantic-release/changelog" "^6.0.0"

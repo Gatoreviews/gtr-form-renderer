@@ -36,7 +36,7 @@ jobs:
         run: |
           yarn gh-action-gtr-semantic-release
         env:
-          SEMVER_RELEASE_TYPE: LIBRARY_NODE
+          SEMVER_RELEASE_TYPE: PUBLIC_LIBRARY_NODE
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ACTION_GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
