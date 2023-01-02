@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.8.3...v1.9.0) (2023-01-02)
+
+
+### Features
+
+* **location:** get last viewed lpe location in widget ([acb2623](https://github.com/Gatoreviews/gtr-form-renderer/commit/acb2623db6352fbe0a27469bdd12c36b3cca297b))
+
 ## [1.8.3](https://github.com/Gatoreviews/gtr-form-renderer/compare/v1.8.2...v1.8.3) (2022-12-08)
 
 
