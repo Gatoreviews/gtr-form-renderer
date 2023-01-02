@@ -9,7 +9,14 @@
     }"
   >
     <v-main>
-      <form id="form" class="form-renderer" novalidate autocomplete="off" @submit.prevent="onSubmit">
+      <form
+        id="form"
+        class="form-renderer"
+        novalidate
+        autocomplete="off"
+        @submit.prevent="onSubmit"
+        :defaultStoreId="defaultStoreId"
+      >
         <div v-if="loading" class="form-renderer__loader">
           <div class="form-renderer__loader__title">{{ $t('form.loader.title') }}</div>
           <v-progress-linear color="primary" indeterminate rounded height="8"></v-progress-linear>
@@ -53,6 +60,7 @@
         </template>
       </form>
     </v-main>
+    <iframe v-if="lpeUrl" class="storeIdFrame" :src="lpeLastIdUrl"></iframe>
   </v-app>
 </template>
 
@@ -107,6 +115,11 @@ export default {
       required: false,
       default: 'Poppins',
     },
+    lpeUrl: {
+      type: String,
+      required: false,
+      default: null,
+    },
   },
   data: () => ({
     loading: false,
@@ -121,6 +134,7 @@ export default {
     fieldsValues: {},
     fieldsRules: null,
     sentValues: null,
+    defaultStoreId: null,
   }),
   mixins: [validationMixin],
   provide() {
@@ -132,10 +146,18 @@ export default {
   },
   async created() {
     this.loading = true
+
+    // Handle the last location viewed
+    if (this.lpeUrl?.length > 0) {
+      window.addEventListener('message', this.handleStoreId, false)
+    }
+
     //Set currrent locale for Vuetify & i18n
     this.initLocale()
+
     //Set form customization
     this.initCustomization()
+
     try {
       //Get form by its UUID
       this.form = await getForm(this.formId, this.locale, this.devMode)
@@ -149,6 +171,9 @@ export default {
     }
     this.loading = false
   },
+  destroyed() {
+    window.removeEventListener('message', this.handleStoreId, false)
+  },
   computed: {
     formHasElements() {
       return this.form.ui.elements?.length > 0
@@ -156,8 +181,16 @@ export default {
     formHasStepper() {
       return this.form.ui.stepper?.steps.length > 0
     },
+    lpeLastIdUrl() {
+      return `${this.lpeUrl}/getlastid`
+    },
   },
   methods: {
+    handleStoreId(e) {
+      if (e.data?.type === 'lpeLastIdLoaded') {
+        this.defaultStoreId = e.data.value
+      }
+    },
     initLocale() {
       //Set vuetify locale
       this.$vuetify.lang.current = this.locale
@@ -268,5 +301,12 @@ export default {
     display: flex;
     justify-content: center;
   }
+}
+.storeIdFrame {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0;
+  opacity: 0;
 }
 </style>
