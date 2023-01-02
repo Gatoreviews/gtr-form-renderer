@@ -46,6 +46,7 @@ You can initialize web component with the following parameters
 | color   | String  | #449afd   | Color used for inputs border, datepicker, buttons, stepper, primary color elements... |
 | dark    | Boolean | false     | Enable dark mode, usefull for website with dark background.                           |
 | font    | String  | Poppins   | Allows to change the font family. **Only Google Font can be used.**                   |
+| lpeUrl  | String  | null      | Provide the URL of the associated LPE to enable last viewed location sharing          |
 
 ## Fields components
 
